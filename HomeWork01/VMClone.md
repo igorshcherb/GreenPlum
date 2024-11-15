@@ -11,8 +11,8 @@
    segment-1 192.168.2.143   
 - Задание статических IP:   
   $ sudo nano /etc/netplan/01-network-manager-all.yaml
-...   
-network:   
+  ...   
+  network:   
   version: 2   
   renderer: NetworkManager   
   ethernets:   
@@ -22,7 +22,7 @@ network:
      gateway4: 192.168.2.1   
      nameservers:   
          addresses: [192.168.2.1,192.168.2.1]   
-...
+  ...
 - Разрешение заходить по SSH под root:   
 $ sudo nano /etc/ssh/sshd_config   
 PermitRootLogin yes   
