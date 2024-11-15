@@ -41,5 +41,5 @@
   $ sudo snap install curl   
 - Установка ssh:   
   $ sudo apt install openssh-server  
-- Установка Midnight Commander   
+- Установка Midnight Commander:   
   sudo apt -y install mc
