@@ -7,4 +7,4 @@
 
 ### [Создание шаблона виртуальных машин в VirtualBox](VMTemplate.md) ###
 ### [Клонирование и настройка виртуальных машин](VMClone.md) ###
-### [Установка Arenadata 7.2 на локальный компьютер](InstallArenadata7.2.md) ###
+### [Установка Arenadata 7.2](InstallArenadata7.2.md) ###
