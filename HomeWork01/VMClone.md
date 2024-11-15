@@ -10,7 +10,7 @@
    standby-1 192.168.2.142   
    segment-1 192.168.2.143   
 - Задание статических IP:   
-  $ sudo nano /etc/netplan/01-network-manager-all.yaml
+  $ sudo nano /etc/netplan/01-network-manager-all.yaml   
   ...   
   network:   
   version: 2   
