@@ -11,7 +11,7 @@ $ sudo systemctl enable docker
 Добавление пользователя в группу docker:   
 $ sudo usermod -a -G docker $USER   
 
-Скачивание Docker-образа ADCM из Arenadata Docker Registry (<version> = 2.4):   
+Скачивание Docker-образа ADCM из Arenadata Docker Registry (version = 2.4):   
 $ sudo docker pull hub.arenadata.io/adcm/adcm:2.4   
 
 Создание Docker-контейнера на основе загруженного образа:   
@@ -82,10 +82,10 @@ Cluster name: ADB Cluster
 Добавление сервиса ADB:   
 Выбрать кластер. Вкладка Services. [Add service]. ADB.   
 
-Создание хоста:   
+Создание хостов:   
 Hosts -> Create host   
 Hostprovider: SSH   
-Name: SingleNode   
+Name: ADCM (master, standby, segment)   
 Cluster: ADB Cluster   
 
 Операция с хостом:   
