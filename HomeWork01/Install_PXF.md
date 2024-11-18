@@ -1,4 +1,4 @@
-** Установка PXF - Platform Extension Framework **   
+## Установка PXF - Platform Extension Framework ##   
 В Arenadata Cluster Manager:   
 1. В кластер ADB Cluster добавить сервис PXF.   
 2. Запустить сервис ADB.   
