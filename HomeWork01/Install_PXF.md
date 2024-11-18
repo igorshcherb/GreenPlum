@@ -2,7 +2,8 @@
 В Arenadata Cluster Manager:   
 1. В кластер ADB Cluster добавить сервис PXF.   
 2. Запустить сервис ADB.   
-3. На сервисе PXF выполнить действия (actions): Install, Start.   
+3. На сервисе PXF выполнить действия (actions): Install, Start.
+   
 В БД Postgres (у меня она установлена в хостовой ОС - Windows) создать и заполнить таблицу:   
 ```   
    create table t1 (c1 integer, c2 integer, p integer);   
