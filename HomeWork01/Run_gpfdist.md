@@ -19,5 +19,5 @@ create external table gpfdist_t1(c1 integer, c2 integer, p integer)
    
 select * from gpfdist_t1;   
 ```
-В результате запроса отразилось содержимое файла t1.txt.   
+В результатах запроса отразилось содержимое файла t1.txt.   
    
