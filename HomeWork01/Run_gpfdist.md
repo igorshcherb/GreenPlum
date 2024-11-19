@@ -2,6 +2,7 @@
 ### На хосте standby-1: ###  
 Создание каталогов:   
 Каталоги /var/load_files/, /home/gpadmin/log/   
+   
 Запуск web-сервера gpfdist:   
 ```
 cd /usr/lib/gpdb/bin/ 
