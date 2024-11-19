@@ -1,9 +1,10 @@
 ## Запуск gpfdist ##   
 ### На хосте standby-1: ###  
-Создание каталогов:
-Каталоги /var/load_files/, /home/gpadmin/log/
+Создание каталогов:   
+Каталоги /var/load_files/, /home/gpadmin/log/   
 Запуск web-сервера gpfdist:   
-```   
+```
+cd /usr/lib/gpdb/bin/ 
 sudo /lib64/ld-linux-x86-64.so.2 ./gpfdist -d /var/load_files/ -p 8081 -l /home/gpadmin/log/gpfdist8081.log   
 ```   
 Создание текстового файла:   
