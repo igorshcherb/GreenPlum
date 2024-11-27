@@ -75,7 +75,7 @@ insert into lineitem_wo_parti (select * from lineitem);
 ```   
 5. Составил запрос на соединение 3 таблиц из датасета.
 ```
-select count(*) -- 
+select count(*)
   from lineitem_wo_parti lit
   left join orders ord on ord.o_orderkey = lit.l_orderkey
   left join supplier supp on supp.s_suppkey = lit.l_suppkey
