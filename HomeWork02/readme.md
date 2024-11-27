@@ -44,12 +44,95 @@ insert into partsupp (select * from partsupp_ext);
    3.3. В таблицы customer, part и supplier с помощью DBeaver-а:   
         Разделитель столбцов: |   
         Использовать мультивставку значений: 500.   
-4. Составил запрос на соединение 4 таблиц из датасета.    
-   Замерил время выполнения.    
-5. Настроил партиционирование таблиц по списку и периоду.   
-6. Составил запрос на соединение 4 таблиц из датасета с применением фильтров по партициям.    
-   Замерил время выполнения.   
-   Сравнил с результатом из первого пункта.   
+4. Создал таблицу без партиций и заполнил ее данными:   
+```
+CREATE TABLE lineitem_wo_part (
+    L_ORDERKEY BIGINT,
+    L_PARTKEY INT,
+    L_SUPPKEY INT,
+    L_LINENUMBER INTEGER,
+    L_QUANTITY DECIMAL(15, 2),
+    L_EXTENDEDPRICE DECIMAL(15, 2),
+    L_DISCOUNT DECIMAL(15, 2),
+    L_TAX DECIMAL(15, 2),
+    L_RETURNFLAG CHAR(1),
+    L_LINESTATUS CHAR(1),
+    L_SHIPDATE DATE,
+    L_COMMITDATE DATE,
+    L_RECEIPTDATE DATE,
+    L_SHIPINSTRUCT CHAR(25),
+    L_SHIPMODE CHAR(10),
+    L_COMMENT VARCHAR(44)
+) WITH (
+    appendonly = true,
+    orientation = column,
+    compresstype = ZSTD
+) 
+DISTRIBUTED BY (L_ORDERKEY, L_LINENUMBER);
+
+insert into lineitem_wo_part (select * from lineitem);
+```   
+5. Составил запрос на соединение 3 таблиц из датасета.
+```
+select count(*) -- 
+  from lineitem_wo_part lit
+  left join orders ord on ord.o_orderkey = lit.l_orderkey
+  left join supplier supp on supp.s_suppkey = lit.l_suppkey
+  where l_shipdate = date'1992-01-15'
+    and l_shipmode = 'RAIL';
+```
+   Замерил время выполнения: 0,760s.
+6. Настроил партиционирование таблиц по списку и периоду.   
+```
+CREATE TABLE lineitem_parti (
+    L_ORDERKEY BIGINT,
+    L_PARTKEY INT,
+    L_SUPPKEY INT,
+    L_LINENUMBER INTEGER,
+    L_QUANTITY DECIMAL(15, 2),
+    L_EXTENDEDPRICE DECIMAL(15, 2),
+    L_DISCOUNT DECIMAL(15, 2),
+    L_TAX DECIMAL(15, 2),
+    L_RETURNFLAG CHAR(1),
+    L_LINESTATUS CHAR(1),
+    L_SHIPDATE DATE,
+    L_COMMITDATE DATE,
+    L_RECEIPTDATE DATE,
+    L_SHIPINSTRUCT CHAR(25),
+    L_SHIPMODE CHAR(10),
+    L_COMMENT VARCHAR(44)
+) WITH (
+    appendonly = true,
+    orientation = column,
+    compresstype = ZSTD
+) 
+DISTRIBUTED BY (L_ORDERKEY, L_LINENUMBER) 
+PARTITION BY RANGE (L_SHIPDATE)
+SUBPARTITION BY LIST(L_SHIPMODE)
+SUBPARTITION TEMPLATE 
+  (SUBPARTITION RAIL    VALUES('RAIL'),
+   SUBPARTITION SHIP    VALUES('SHIP'),
+   SUBPARTITION FOB     VALUES('FOB'),     
+   SUBPARTITION TRUCK   VALUES('TRUCK'),    
+   SUBPARTITION AIR     VALUES('AIR'),    
+   SUBPARTITION REG_AIR VALUES('REG AIR'),  
+   SUBPARTITION MAIL    VALUES('MAIL'),
+   DEFAULT SUBPARTITION OTHER_SHIPMODES)
+  (START('1992-01-01') INCLUSIVE END ('1998-12-31') INCLUSIVE EVERY (30), DEFAULT PARTITION OTHERS);  
+
+insert into lineitem_parti (select * from lineitem); 
+```
+7. Составил запрос на соединение 3 таблиц из датасета с применением фильтров по партициям.
+```
+select count(*)
+  from lineitem_parti lit
+  left join orders ord on ord.o_orderkey = lit.l_orderkey
+  left join supplier supp on supp.s_suppkey = lit.l_suppkey
+  where l_shipdate = date'1992-01-15'
+    and l_shipmode = 'RAIL';
+```
+   Замерил время выполнения: 0,225s.   
+   Сравнил с результатом из первого пункта: время выполнения уменьшилось в 3,37 раза.   
    
 
         
