@@ -13,7 +13,10 @@
    \copy nation from 'c:\temp\nation.tbl' WITH (FORMAT csv, DELIMITER '|');
    ```   
    3.2. В таблицы region, lineitem, orders и partsupp с помощью GPFDIST:
-```   
+```
+cd /usr/lib/gpdb/bin/    
+sudo /lib64/ld-linux-x86-64.so.2 ./gpfdist -d /var/load_files/ -p 8081 -l /home/gpadmin/log/gpfdist8081.log   
+    
 CREATE external TABLE region_ext ( R_REGIONKEY INTEGER, R_NAME CHAR(25),R_COMMENT text) 
   location ('gpfdist://192.168.2.142:8081/region.tbl') format 'CSV' (DELIMITER '|');
 select * from region_ext; 
