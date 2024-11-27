@@ -8,7 +8,8 @@
 2. Создал БД test_datasets и таблицы в ней.   
 3. Загрузил данные в таблицы:   
    3.1. В таблицу nation с помощью COPY:   
-   ```   
+   ```
+   psql -h 192.168.2.141 -U gpadmin -d test_datasets   
    \copy nation from 'c:\temp\nation.tbl' WITH (FORMAT csv, DELIMITER '|');
    ```   
    3.2. В таблицы region, lineitem, orders и partsupp с помощью GPFDIST:
