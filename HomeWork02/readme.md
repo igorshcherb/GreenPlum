@@ -1,5 +1,5 @@
-## Домашнее задание № 2 ##   
-# SQL в Greenplum #   
+### Домашнее задание № 2 ###   
+## SQL в Greenplum ##   
 1. Выполнил предварительную подготовку файлов:   
    * В файлы для загрузки с помощью DBeaver-а добавил первую строку, содержащую имена колонок, иначе DBeaver добавлял в таблицы столбцы с заголовками, соответствующими значениям из первой строки файла.   
    * Из файлов для загрузки с помощью COPY и GPFDIST убрал разделители столбцов из концов строк, иначе возникала ошибка:   
@@ -46,7 +46,7 @@ insert into partsupp (select * from partsupp_ext);
         Использовать мультивставку значений: 500.   
 4. Создал таблицу без партиций и заполнил ее данными:   
 ```
-CREATE TABLE lineitem_wo_part (
+CREATE TABLE lineitem_wo_parti (
     L_ORDERKEY BIGINT,
     L_PARTKEY INT,
     L_SUPPKEY INT,
@@ -70,19 +70,19 @@ CREATE TABLE lineitem_wo_part (
 ) 
 DISTRIBUTED BY (L_ORDERKEY, L_LINENUMBER);
 
-insert into lineitem_wo_part (select * from lineitem);
+insert into lineitem_wo_parti (select * from lineitem);
 ```   
 5. Составил запрос на соединение 3 таблиц из датасета.
 ```
 select count(*) -- 
-  from lineitem_wo_part lit
+  from lineitem_wo_parti lit
   left join orders ord on ord.o_orderkey = lit.l_orderkey
   left join supplier supp on supp.s_suppkey = lit.l_suppkey
   where l_shipdate = date'1992-01-15'
     and l_shipmode = 'RAIL';
 ```
    Замерил время выполнения: 0,760s.
-6. Настроил партиционирование таблиц по списку и периоду.   
+6. Настроил партиционирование таблицы по списку и периоду.   
 ```
 CREATE TABLE lineitem_parti (
     L_ORDERKEY BIGINT,
