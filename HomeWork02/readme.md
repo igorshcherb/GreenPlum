@@ -44,6 +44,7 @@ insert into partsupp (select * from partsupp_ext);
    3.3. В таблицы customer, part и supplier с помощью DBeaver-а:   
         Разделитель столбцов: |   
         Использовать мультивставку значений: 500.   
+            
 4. Создал таблицу без партиций и заполнил ее данными:   
 ```
 CREATE TABLE lineitem_wo_parti (
@@ -81,7 +82,7 @@ select count(*) --
   where l_shipdate = date'1992-01-15'
     and l_shipmode = 'RAIL';
 ```
-   Замерил время выполнения: 0,760s.
+   Замерил время выполнения: 0,760s.   
 6. Настроил партиционирование таблицы по списку и периоду.   
 ```
 CREATE TABLE lineitem_parti (
