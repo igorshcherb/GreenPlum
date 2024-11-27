@@ -83,6 +83,7 @@ select count(*)
     and l_shipmode = 'RAIL';
 ```
    Замерил время выполнения: 0,760s.   
+   
 6. Настроил партиционирование таблицы по списку и периоду.   
 ```
 CREATE TABLE lineitem_parti (
