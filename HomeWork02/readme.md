@@ -37,4 +37,9 @@ CREATE external TABLE partsupp_ext ( PS_PARTKEY INT, PS_SUPPKEY INT, PS_AVAILQTY
     PS_SUPPLYCOST DECIMAL(15, 2),PS_COMMENT text) 
   location ('gpfdist://192.168.2.142:8081/partsupp.tbl') format 'CSV' (DELIMITER '|');
 insert into partsupp (select * from partsupp_ext);
-```
+```   
+   3.3. В таблицы customer, part и supplier с помощью DBeaver-а:   
+        Разделитель столбцов: |   
+        Использовать мультивставку значений: 500.
+4.         
+        
