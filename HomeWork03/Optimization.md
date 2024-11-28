@@ -70,6 +70,25 @@ analyze lineitem;
 ```
 После этого план запроса не изменился, а время выполнения незначительно увеличилось (в пределах погрешности).   
    
-### 3. Добавление индекса по полю ограничению WHERE ###   
+### 3. Добавление индекса по полю ограничения WHERE ###   
 
+Был добавлен индекс по полю, по которому в пятом запросе в предложении WHERE накладывается ограничение:    
+```
+create index supplier_suppkey_ind on supplier(s_suppkey);
+analyze supplier;
+```
+При этом в плане запроса появилась операция "Bitmap Index Scan", стоимость запроса уменьшилась до 1267.35 (было 1310.51), а время выполнения сократилось до 0.091 сек (было 0.124 сек).
+```
+Type: Hash Join (Inner); ; Cost: 0.00 - 1267.35
+	Type: Gather Motion; ; Cost: 0.00 - 879.34
+		Type: Hash Join (Inner); ; Cost: 0.00 - 879.33
+			Type: Seq Scan; Rel: part ; Cost: 0.00 - 432.76
+			Type: Hash; ; Cost: 441.25 - 441.25
+				Type: Redistribute Motion; ; Cost: 0.00 - 441.25
+					Type: Seq Scan; Rel: partsupp ; Cost: 0.00 - 441.24
+	Type: Hash; ; Cost: 387.97 - 387.97
+		Type: Gather Motion; ; Cost: 0.00 - 387.97
+			Type: Bitmap Heap Scan; Rel: supplier ; Cost: 0.00 - 387.97
+				Type: Bitmap Index Scan; Rel: supplier_suppkey_ind ; Cost: 0.00 - 0.00
+```    
 
