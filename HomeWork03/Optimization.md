@@ -61,4 +61,15 @@ Type: Hash Join (Inner); ; Cost: 0.00 - 1310.51
    
 ### 2. Добавление индексов по полям соединения ###   
 
+Были добавлены индексы по полям, по которым происходит соединение во втором запросе:   
+```
+create index orders_orderkey_ind on orders(o_orderkey);
+create index lineitem_orderkey_ind on lineitem(l_orderkey);
+analyze orders;
+analyze lineitem;
+```
+После этого план запроса не изменился, а время выполнения незначительно увеличилось (в пределах погрешности).   
+   
 ### 3. Добавление индекса по полю ограничению WHERE ###   
+
+
