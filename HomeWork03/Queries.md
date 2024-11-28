@@ -1,4 +1,10 @@
 ## Запросы ##
+
+**Примечание.** Датасеты в этом и предыдущем домашнем задании проще, чем те, запросы по которым были показаны на занятии.   
+В этих запросах отсутствуют:   
+* Поля LoadDate и конструкции вида "WHERE LoadDate = (select max(LoadDate) from ...)"   
+* Поля HashKey и соединения по ним.   
+* Таблицы Sattelite...   
    
 ### Query 1: Retrieve Customer Orders with Order and Customer Details ###   
 ```
