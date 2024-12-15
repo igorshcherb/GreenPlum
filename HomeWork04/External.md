@@ -13,7 +13,7 @@ create external table contract_types_pxf(id integer, type_name varchar(100))
 ```
 Загрузка данных:
 ```
-insert into contract_types (select * from contract_types_pxf);
+insert into contract_types (select * from contract_types_pxf); 
 ```
    
 
