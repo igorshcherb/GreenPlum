@@ -6,6 +6,7 @@
 
 ### 2. Таблица для загрузки данных из БД Postgres ###   
 
+Создание внешней таблицы для загрузки данных из БД Postgres с помощью pxf.
 ```
 create external table contract_types_pxf(id integer, type_name varchar(100))   
      location ('pxf://contract_types?PROFILE=JDBC&JDBC_DRIVER=org.postgresql.Driver&DB_URL=jdbc:postgresql://192.168.2.32:5432/postgres&USER=postgres&PASS=p')   
