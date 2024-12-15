@@ -19,7 +19,27 @@ DISTRIBUTED BY (R_REGIONKEY);
    
 Temp-таблицы могут быть использованы, в частности, для хранения промежуточных результатов вычислений, например:   
 ```
+CREATE TEMPORARY TABLE orders_selected (
+    O_ORDERKEY BIGINT,
+    O_CUSTKEY INT,
+    O_ORDERSTATUS CHAR(1),
+    O_TOTALPRICE DECIMAL(15, 2),
+    O_ORDERDATE DATE,
+    O_ORDERPRIORITY CHAR(15),
+    O_CLERK CHAR(15),
+    O_SHIPPRIORITY INTEGER,
+    O_COMMENT VARCHAR(79)
+) WITH (
+    appendonly = true,
+    orientation = column,
+    compresstype = ZSTD
+) 
+DISTRIBUTED BY (O_ORDERKEY);
 ```
+
+Unlogged-таблицы на реплицируются на mirror-сегменты. В них можно хранить данные, которые не страшно потерять в случае сбоя.
+
+
 
 
 
