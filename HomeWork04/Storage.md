@@ -39,6 +39,26 @@ DISTRIBUTED BY (O_ORDERKEY);
 
 Unlogged-таблицы на реплицируются на mirror-сегменты. В них можно хранить данные, которые не страшно потерять в случае сбоя.
 Например, таблица для хранения промежуточных результатов вычислений, которая может потребоваться в нескольких сессиях:
+```
+CREATE UNLOGGED TABLE orders_selected_2 (
+    O_ORDERKEY BIGINT,
+    O_CUSTKEY INT,
+    O_ORDERSTATUS CHAR(1),
+    O_TOTALPRICE DECIMAL(15, 2),
+    O_ORDERDATE DATE,
+    O_ORDERPRIORITY CHAR(15),
+    O_CLERK CHAR(15),
+    O_SHIPPRIORITY INTEGER,
+    O_COMMENT VARCHAR(79)
+) WITH (
+    appendonly = true,
+    orientation = column,
+    compresstype = ZSTD
+) 
+DISTRIBUTED BY (O_ORDERKEY);
+```
+
+
 
 
 
