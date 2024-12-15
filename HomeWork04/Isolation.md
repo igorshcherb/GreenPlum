@@ -32,8 +32,8 @@ select * from region where r_name = 'SOUTH AMERICA';
    
 ### Уровень изоляции serializable ###   
 
-1. В первой сессии:
-Удалил строку:
+1. В первой сессии:   
+Удалил строку:   
 ```
 delete from region where r_name = 'SOUTH AMERICA';
 commit;
