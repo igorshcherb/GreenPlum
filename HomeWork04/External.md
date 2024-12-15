@@ -17,4 +17,5 @@ create external table contract_types_pxf(id integer, type_name varchar(100))
 insert into contract_types (select * from contract_types_pxf); 
 ```
    
-
+Данные успешно загружены.   
+   
