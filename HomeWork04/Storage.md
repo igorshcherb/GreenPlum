@@ -9,7 +9,7 @@
 CREATE TABLE region_2 (
     R_REGIONKEY INTEGER,
     R_NAME VARCHAR(25)
-) WITH (appendoptimized = true, orientation = row) 
+) WITH (appendoptimized = true, orientation = *row*) 
 DISTRIBUTED BY (R_REGIONKEY);
 ```
 
