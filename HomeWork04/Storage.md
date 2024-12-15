@@ -12,3 +12,9 @@ CREATE TABLE region_2 (
 ) WITH (appendoptimized = true, orientation = row) 
 DISTRIBUTED BY (R_REGIONKEY);
 ```
+
+### 2. Типы таблиц ### 
+
+Кроме обычных таблиц, существуют temp, unlogged и external таблицы.
+
+
