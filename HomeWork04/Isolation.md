@@ -7,21 +7,27 @@
 ```
 set transaction isolation level read committed;
 insert into region values (5, 'SOUTH AMERICA', 'continent');
-select * from region where r_name = 'SOUTH AMERICA'; -- <-- запрос вернул строку
+select * from region where r_name = 'SOUTH AMERICA';
 ```
+Запрос вернул строку.
+   
 3. Во второй сессии выполнил:
 ```
 set transaction isolation level read committed;
-select * from region where r_name = 'SOUTH AMERICA'; -- <-- запрос не вернул строку
+select * from region where r_name = 'SOUTH AMERICA';
 ```
-4. В первой сессии выполнил:
+Запрос не вернул строку.
+   
+4. В первой сессии выполнил:   
 ```
 commit;
 ```
-5. Во второй сессии выполнил:
+   
+5. Во второй сессии выполнил:   
 ```
-select * from region where r_name = 'SOUTH AMERICA'; -- <-- запрос вернул строку
+select * from region where r_name = 'SOUTH AMERICA';
 ```
+Запрос вернул строку.
 
 
 ### Выводы ###   
