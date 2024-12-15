@@ -28,6 +28,7 @@ commit;
 select * from region where r_name = 'SOUTH AMERICA';
 ```
 Запрос вернул строку.   
+
    
 ### Уровень изоляции serializable ###   
 
