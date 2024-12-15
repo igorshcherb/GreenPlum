@@ -14,6 +14,14 @@ DISTRIBUTED BY (R_REGIONKEY);
 ```
 
 В качестве ключа дистрибуции используется поле, обеспечивающее равноменое распределение данных по сегментам.
+
+Для небольших таблиц можно использовать тип хранения heap:
+```
+CREATE TABLE region_3 (
+    R_REGIONKEY INTEGER,
+    R_NAME VARCHAR(25)
+) WITH (appendoptimized = false)
+```
    
 
 ### 2. Типы таблиц ### 
