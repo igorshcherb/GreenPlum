@@ -9,9 +9,12 @@
 CREATE TABLE region_2 (
     R_REGIONKEY INTEGER,
     R_NAME VARCHAR(25)
-) WITH (appendoptimized = true, orientation = * row *) 
+) WITH (appendoptimized = true, orientation = row) 
 DISTRIBUTED BY (R_REGIONKEY);
 ```
+
+В качестве ключа дистрибуции используется поле, обеспечивающее равноменое распределение данных по сегментам.
+   
 
 ### 2. Типы таблиц ### 
 
@@ -58,6 +61,9 @@ CREATE UNLOGGED TABLE orders_selected_2 (
 DISTRIBUTED BY (O_ORDERKEY);
 ```
 
+### 3. Партицированные таблицы ###
+
+Несколько партицированных таблиц было создано в предыдущих домашних заданиях.
 
 
 
