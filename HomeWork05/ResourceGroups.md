@@ -34,6 +34,6 @@ CREATE RESOURCE GROUP rgroup1 WITH (CPU_MAX_PERCENT=30, MEMORY_QUOTA=100);
 ### Создание ресурсной группы для "легких" запроосов ### 
 Для "легких" запроосов выделяется меньше ресурсов CPU и меньший объем памяти:
 ```
-CREATE RESOURCE GROUP rgroup1 WITH (CPU_MAX_PERCENT=5, MEMORY_QUOTA=5);
+CREATE RESOURCE GROUP rgroup2 WITH (CPU_MAX_PERCENT=5, MEMORY_QUOTA=5);
 ```
 
