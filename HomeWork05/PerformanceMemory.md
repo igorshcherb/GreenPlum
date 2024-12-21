@@ -29,7 +29,13 @@ SQL Error [53000]: ERROR: insufficient memory reserved for statement
 ```
 alter role gpuser resource group rgroup2;
 ```
-Выполняется тот же запрос.   
+Выполняется запрос:
+```
+select count(*)
+from customer c 
+     join orders o on o.o_custkey = c.c_custkey
+     join lineitem l on l.l_orderkey = o.o_orderkey
+```   
 Время выполнения запроса: 12 сек.   
       
 ### Выводы ###
