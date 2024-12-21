@@ -10,6 +10,24 @@ select * from gp_toolkit.gp_resgroup_config;
 |6437|default_group|20|20|100|-1|-1|500|-1|
 |6438|admin_group|10|10|100|-1|-1|500|-1|
 |6441|system_group|0|10|100|-1|-1|500|-1|
+### Назначение ресурстых групп по умолчанию ###
+```
+select r.rolname, rg.rsgname
+from pg_roles r
+     join pg_resgroup rg on r.rolresgroup = rg.oid
+```
+|rolname|rsgname|
+|-------|-------|
+|pg_monitor|admin_group|
+|pg_read_all_settings|admin_group|
+|pg_read_all_stats|admin_group|
+|pg_stat_scan_tables|admin_group|
+|pg_read_server_files|admin_group|
+|pg_write_server_files|admin_group|
+|pg_execute_server_program|admin_group|
+|pg_signal_backend|admin_group|
+|gpadmin|admin_group|
+
 
 ### Команды создания ресурсных групп в Greenplum 7 / Arenadata DB 7.2 ### 
 Команды создания ресурсных групп в Greenplum 7 / Arenadata DB 7.2 отличаются от команд Greenplum 6, рассмотренных на лекции.
