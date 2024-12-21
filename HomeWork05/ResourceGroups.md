@@ -16,7 +16,7 @@ select * from gp_toolkit.gp_resgroup_config;
 Для написания команд создания ресурсных групп Arenadata DB 7.2 воспользовался документацией:   
 [CREATE_RESOURCE_GROUP](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-greenplum/7/greenplum-database/ref_guide-sql_commands-CREATE_RESOURCE_GROUP.html)  
 ```
-CREATE RESOURCE GROUP rg_new WITH (   
+CREATE RESOURCE GROUP rgroup1 WITH (   
     CONCURRENCY=<integer>  -- The maximum number of concurrent transactions, including active and idle transactions, that are permitted for this resource group.   
     CPU_MAX_PERCENT=<integer>  -- The percentage of the maximum available CPU resources that the resource group can use.   
     CPUSET=<coordinator_cores>;<segment_cores>  -- the CPU cores to reserve for this resource group on the coordinator host and on segment hosts.   
@@ -26,10 +26,14 @@ CREATE RESOURCE GROUP rg_new WITH (
     IO_LIMIT=' <tablespace_io_limit_spec> -- The maximum read/write sequential disk I/O throughput, and the maximum read/write I/O operations per second for the queries assigned to a specific resource group.   
     );   
 ```
-### Создание ресурсной группы для "тяжелых" запроосов ### 
+### Создание ресурсной группы для "тяжелых" запроосов ###   
+Для "тяжелых" запроосов выделяется больше ресурсов CPU и большой объем памяти:
 ```
+CREATE RESOURCE GROUP rgroup1 WITH (CPU_MAX_PERCENT=30, MEMORY_QUOTA=100);
 ```
 ### Создание ресурсной группы для "легких" запроосов ### 
+Для "легких" запроосов выделяется меньше ресурсов CPU и меньший объем памяти:
 ```
+CREATE RESOURCE GROUP rgroup1 WITH (CPU_MAX_PERCENT=5, MEMORY_QUOTA=5);
 ```
 
