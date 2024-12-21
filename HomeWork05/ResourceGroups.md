@@ -10,7 +10,7 @@ select * from gp_toolkit.gp_resgroup_config;
 |6437|default_group|20|20|100|-1|-1|500|-1|
 |6438|admin_group|10|10|100|-1|-1|500|-1|
 |6441|system_group|0|10|100|-1|-1|500|-1|
-### Назначение ресурстых групп по умолчанию ###
+### Назначение ресурсных групп по умолчанию ###
 ```
 select r.rolname, rg.rsgname
 from pg_roles r
