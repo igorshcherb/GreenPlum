@@ -42,10 +42,10 @@ Clusters -> Create cluster -> Create
 ### Открытие окон мониторинга ###   
 Открытие окна Graphite (порт 80 можно не указывать в адресе): http://192.168.2.145   
    
-Открытие окна Graphana: http://192.168.2.145:3000
+Открытие окна Graphana (порт 3000): http://192.168.2.145:3000
    
-Примеры:   
-
+### Примеры мониторинга ###     
+   
 [Graphite](Graphite.jpg)   
 [Graphana](ArenadataSystemMetrics.jpg)   
 
