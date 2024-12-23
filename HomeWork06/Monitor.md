@@ -13,7 +13,7 @@ IP адрес хоста (у меня): 192.168.2.145.
 
 ### Загрузка и установка бандла мониторинга ###   
 Бандл мониторинга adcm_cluster_monitoring_v4.1.0-1_community.tgz загружаентся со страницы   
-[https://network.arenadata.io/arenadata-monitoring](https://network.arenadata.io/arenadata-monitoring)   
+https://network.arenadata.io/arenadata-monitoring
 Установка бандла в ADCM:   
 Bundles -> Upload bundle -> Выбрать загруженный файл с локального диска -> Открыть   
 
