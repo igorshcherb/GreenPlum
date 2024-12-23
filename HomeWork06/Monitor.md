@@ -6,7 +6,8 @@
 Поэтому мониторинг был добавлен в кластер с одним сегмент-хостом.   
 Имя хоста мониторинга: monitoring.   
 IP адрес хоста (у меня): 192.168.2.145.   
-Этот хост нужно зарегистрировать В ADCM: Hosts -> Create host   
+Этот хост нужно зарегистрировать в ADCM:   
+Hosts -> Create host   
 * Hostprovider: SSH   
 * Name: monitoring   
 * Параметры хоста: Password, SSH private key, Connection address (IP адрес ВМ).   
