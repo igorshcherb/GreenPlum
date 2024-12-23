@@ -42,7 +42,7 @@ $ python3 gprecoverseg
 |9|3|p|m|s|u|10501|segment-1|segment-1|/data1/mirror/gpseg3|
 |5|3|m|p|s|u|10001|segment-2|segment-2|/data1/primary/gpseg3|
 
-2. Ребалансировка
+2. Ребалансировка:
 ```
 $ python3 gprecoverseg -r
 ```
