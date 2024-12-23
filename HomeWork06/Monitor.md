@@ -13,7 +13,7 @@ Hosts -> Create host
 * Параметры хоста: Password, SSH private key, Connection address (IP адрес ВМ).   
 
 ### Загрузка и установка бандла мониторинга ###   
-Бандл мониторинга adcm_cluster_monitoring_v4.1.0-1_community.tgz загружаентся со страницы   
+Бандл мониторинга adcm_cluster_monitoring_v4.1.0-1_community.tgz загружается со страницы   
 https://network.arenadata.io/arenadata-monitoring   
 Установка бандла в ADCM:   
 Bundles -> Upload bundle -> Выбрать загруженный файл с локального диска -> Открыть   
