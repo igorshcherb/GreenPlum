@@ -18,7 +18,7 @@ https://network.arenadata.io/arenadata-monitoring
 Bundles -> Upload bundle -> Выбрать загруженный файл с локального диска -> Открыть   
 
 ### Создание и настройка кластера мониторинга в ADCM ###   
-Clusters -> Create cluster => Create    
+Clusters -> Create cluster -> Create    
 * Product: Monitoring   
 * Product version: 4.1.0-1_community   
 * Cluster name: Monitoring cluster (например)
