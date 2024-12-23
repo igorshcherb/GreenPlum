@@ -59,6 +59,18 @@ $ python3 gprecoverseg -r
 |8|2|m|m|s|u|10500|segment-1|segment-1|/data1/mirror/gpseg2|
 |5|3|p|p|s|u|10001|segment-2|segment-2|/data1/primary/gpseg3|
 |9|3|m|m|s|u|10501|segment-1|segment-1|/data1/mirror/gpseg3|
-   
+
+### Распределение данных между сегментами ###      
+Все это время картина распределения данных таблицы между сегментами была одна и та же. Только под номерами 0..3 выступали разные экземпляры Postgres.
+```
+select distinct gp_segment_id from t1 order by 1;
+```
+|gp_segment_id|
+|-------------|
+|0|
+|1|
+|2|
+|3|
+
 
 
