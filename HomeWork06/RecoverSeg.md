@@ -46,7 +46,7 @@ $ python3 gprecoverseg
 ```
 $ python3 gprecoverseg -r
 ```
-После этого конфигурация сегментов вернулась к первоначальному виду:   
+Конфигурация сегментов вернулась к первоначальному виду:   
 |dbid|content|role|preferred_role|mode|status|port|hostname|address|datadir|
 |----|-------|----|--------------|----|------|----|--------|-------|-------|
 |1|-1|p|p|n|u|5432|master|master|/data1/master/gpseg-1|
