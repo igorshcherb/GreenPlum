@@ -8,6 +8,7 @@
 Этот хост нужно зарегистрировать В ADCM: Hosts -> Create host
 * Hostprovider: SSH
 * Name: monitoring
+* Параметры хоста: Password, SSH private key, Connection address (IP адрес ВМ).
 
 ### Загрузка и установка бандла мониторинга ###   
 Бандл мониторинга adcm_cluster_monitoring_v4.1.0-1_community.tgz загружаентся со страницы   
@@ -27,4 +28,6 @@ Clusters -> Create cluster => Create
 * Graphite
 
 На странице кластера: Hosts -> Add hosts
+Выбрать хост monitoring.
+
 
