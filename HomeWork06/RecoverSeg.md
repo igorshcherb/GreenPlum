@@ -44,6 +44,8 @@ $ python3 gprecoverseg
 |4|2|m|p|s|u|10000|segment-2|segment-2|/data1/primary/gpseg2|
 |9|3|p|m|s|u|10501|segment-1|segment-1|/data1/mirror/gpseg3|
 |5|3|m|p|s|u|10001|segment-2|segment-2|/data1/primary/gpseg3|
+   
+Все статусы терерь "up". Но все сегменты на хосте segment-2 - зеркальные.
 
 2. Ребалансировка:
 ```
