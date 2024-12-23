@@ -18,8 +18,8 @@
 |9|3|p|m|n|u|10501|segment-1|segment-1|/data1/mirror/gpseg3|
 |5|3|m|p|n|d|10001|segment-2|segment-2|/data1/primary/gpseg3|
 
-Сегменты на хосте segment-2 получили статус "down" (status='d') и пометку "Не синхронизовано" (mode='n').
-Все сегменты на segment-2 теперь зеркальные (role='m'), включая те, которые были primary (preferred_role='p').
+Сегменты на хосте segment-2 получили статус "down" (status='d') и пометку "Не синхронизовано" (mode='n').   
+Все сегменты на segment-2 теперь зеркальные (role='m'), включая те, которые были primary (preferred_role='p').   
 
 ### Восстановление кластера ###   
 Восстановление кластера выполнялось в два этапа.   
