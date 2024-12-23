@@ -27,7 +27,7 @@ create table t1(id int8, vc varchar(100)) distributed by (id);
 insert into t1 (select s, s::varchar from generate_series(1, 100) s);
 ```
    
-### Первоначальная конфигурация кластера ###   
+### Первоначальная конфигурация сегментов ###   
 ```
 select * from gp_segment_configuration order by content, role desc;
 ```
