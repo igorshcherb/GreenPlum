@@ -72,5 +72,24 @@ select distinct gp_segment_id from t1 order by 1;
 |2|
 |3|
 
-
-
+### Синхронизация зеркал ###
+После восстановления кластера восстановилась синхронизация зеркал:
+```
+python3 gpstate -m
+```
+```
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-Starting gpstate with args: -m
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 7.2.0_arenadata5 build 103+git7888a88'
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-coordinator Greenplum Version: 'PostgreSQL 12.12 (Greenplum Database 7.2.0_arenadata5 build 103+git7888a88) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit compiled on Sep 16 2024 20:02:13 Bhuvnesh C.'
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-Obtaining Segment details from coordinator...
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--Current GPDB mirror list and status
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--Type = Group
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   Mirror      Datadir                Port    Status    Data Status    
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-2   /data1/mirror/gpseg0   10500   Passive   Synchronized
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-2   /data1/mirror/gpseg1   10501   Passive   Synchronized
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-1   /data1/mirror/gpseg2   10500   Passive   Synchronized
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-1   /data1/mirror/gpseg3   10501   Passive   Synchronized
+20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
+```
