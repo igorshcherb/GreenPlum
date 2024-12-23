@@ -34,7 +34,7 @@ Clusters -> Create cluster => Create
 На странице кластера перейти на закладку Mapping.    
 Указать хост monitoring для Graphana, Graphite, Diamond.   
    
-На странице кластера перейти на закладку Services. Задать пароль пользователя admin ддя сервиса Graphana.   
+На странице кластера перейти на закладку Services. Задать пароль пользователя admin для сервиса Graphana.   
    
 На странице кластера выполнить действие "Install".   
 
