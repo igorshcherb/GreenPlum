@@ -45,7 +45,8 @@ Clusters -> Create cluster -> Create
 Открытие окна Graphana (порт 3000): http://192.168.2.145:3000
    
 ### Примеры мониторинга ###     
-   
+
+Для примера - мониторинг выполнения одного "тяжелого" запроса и нескольких "легких":   
 [Graphite](Graphite.jpg)   
 [Graphana](ArenadataSystemMetrics.jpg)   
 
