@@ -114,3 +114,16 @@ $ python3 gpstate -e
 20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-----------------------------------------------------
 20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-All segments are running normally
 ```
+
+### История изменения статуса одного из сегментов ###
+```   
+select * from gp_configuration_history where dbid = 4;   
+```
+|time|dbid|description|
+|----|----|-----------|
+|2024-12-23 08:01:26.232 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and s|
+|2024-12-23 08:33:41.183 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to m, d, and n|
+|2024-12-23 10:20:34.646 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to m, u, and s|
+|2024-12-23 10:33:37.002 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and n|
+|2024-12-23 10:33:45.298 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and s|
+   
