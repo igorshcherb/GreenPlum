@@ -37,7 +37,7 @@ Clusters -> Create cluster -> Create
    
 На странице кластера Monitoring перейти на закладку Services. Задать пароль пользователя admin для сервиса Graphana. 
 
-На странице кластера ADB перейти на закладку Imoport и выполнить импорт кластера Monitoring с сервисами Graphana, Graphite.
+На странице кластера ADB перейти на закладку Import и выполнить импорт кластера Monitoring с сервисами Graphana, Graphite.
    
 На странице кластера Monitoring выполнить действие "Install".   
 
