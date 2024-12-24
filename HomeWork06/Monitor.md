@@ -29,15 +29,17 @@ Clusters -> Create cluster -> Create
 * Graphana
 * Graphite
 
-На странице кластера: Hosts -> Add hosts   
+На странице кластера Monitoring: Hosts -> Add hosts   
 Выбрать хост monitoring.   
 
-На странице кластера перейти на закладку Mapping.    
+На странице кластера Monitoring перейти на закладку Mapping.    
 Указать хост monitoring для Graphana, Graphite, Diamond.   
    
-На странице кластера перейти на закладку Services. Задать пароль пользователя admin для сервиса Graphana.   
+На странице кластера Monitoring перейти на закладку Services. Задать пароль пользователя admin для сервиса Graphana. 
+
+На странице кластера ADB перейти на закладку Imoport и выполнить импорт кластера Monitoring с сервисами Graphana, Graphite.
    
-На странице кластера выполнить действие "Install".   
+На странице кластера Monitoring выполнить действие "Install".   
 
 ### Открытие окон мониторинга ###   
 Открытие окна Graphite (порт 80 можно не указывать в адресе): http://192.168.2.145   
