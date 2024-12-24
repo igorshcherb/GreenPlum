@@ -83,20 +83,20 @@ select distinct gp_segment_id from t1 order by 1;
 $ python3 gpstate -m
 ```
 ```
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-Starting gpstate with args: -m
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 7.2.0_arenadata5 build 103+git7888a88'
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-coordinator Greenplum Version: 'PostgreSQL 12.12 (Greenplum Database 7.2.0_arenadata5 build 103+git7888a88) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit compiled on Sep 16 2024 20:02:13 Bhuvnesh C.'
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-Obtaining Segment details from coordinator...
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--Current GPDB mirror list and status
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--Type = Group
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   Mirror      Datadir                Port    Status    Data Status    
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-2   /data1/mirror/gpseg0   10500   Passive   Synchronized
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-2   /data1/mirror/gpseg1   10501   Passive   Synchronized
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-1   /data1/mirror/gpseg2   10500   Passive   Synchronized
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-1   /data1/mirror/gpseg3   10501   Passive   Synchronized
-20241223:12:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-Starting gpstate with args: -m
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 7.2.0_arenadata5 build 103+git7888a88'
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-coordinator Greenplum Version: 'PostgreSQL 12.12 (Greenplum Database 7.2.0_arenadata5 build 103+git7888a88) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit compiled on Sep 16 2024 20:02:13 Bhuvnesh C.'
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-Obtaining Segment details from coordinator...
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:--Current GPDB mirror list and status
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:--Type = Group
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-   Mirror      Datadir                Port    Status    Data Status    
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-2   /data1/mirror/gpseg0   10500   Passive   Synchronized
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-2   /data1/mirror/gpseg1   10501   Passive   Synchronized
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-1   /data1/mirror/gpseg2   10500   Passive   Synchronized
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:-   segment-1   /data1/mirror/gpseg3   10501   Passive   Synchronized
+20241223:22:23:14:208233 gpstate:master:gpadmin-[INFO]:--------------------------------------------------------------
 ```
    
 Все сегменты работают хорошо:
@@ -105,14 +105,14 @@ $ python3 gpstate -e
 ```
 ```
 20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-Starting gpstate with args: -e
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 7.2.0_arenadata5 build 103+git7888a88'
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-coordinator Greenplum Version: 'PostgreSQL 12.12 (Greenplum Database 7.2.0_arenadata5 build 103+git7888a88) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit compiled on Sep 16 2024 20:02:13 Bhuvnesh C.'
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-Obtaining Segment details from coordinator...
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-Gathering data from segments...
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-----------------------------------------------------
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-Segment Mirroring Status Report
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-----------------------------------------------------
-20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-All segments are running normally
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 7.2.0_arenadata5 build 103+git7888a88'
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-coordinator Greenplum Version: 'PostgreSQL 12.12 (Greenplum Database 7.2.0_arenadata5 build 103+git7888a88) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit compiled on Sep 16 2024 20:02:13 Bhuvnesh C.'
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-Obtaining Segment details from coordinator...
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-Gathering data from segments...
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-----------------------------------------------------
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-Segment Mirroring Status Report
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-----------------------------------------------------
+20241223:22:27:28:211479 gpstate:master:gpadmin-[INFO]:-All segments are running normally
 ```
 
 ### История изменения ролей и статусов одного из сегментов ###
@@ -121,10 +121,10 @@ select * from gp_configuration_history where dbid = 4;
 ```
 |time|dbid|description|
 |----|----|-----------|
-|2024-12-23 08:01:26.232 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and s|
-|2024-12-23 08:33:41.183 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to m, d, and n|
-|2024-12-23 10:20:34.646 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to m, u, and s|
-|2024-12-23 10:33:37.002 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and n|
-|2024-12-23 10:33:45.298 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and s|
+|2024-12-23 20:01:26.232 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and s|
+|2024-12-23 20:33:41.183 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to m, d, and n|
+|2024-12-23 21:20:34.646 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to m, u, and s|
+|2024-12-23 21:33:37.002 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and n|
+|2024-12-23 21:33:45.298 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and s|
       
-Создан в 08:01, выключен в 08:33, восстановлен в 10:20, ребалансирован в 10:33.   
+Создан в 20:01, выключен в 20:33, восстановлен в 21:20, ребалансирован в 21:33.   
