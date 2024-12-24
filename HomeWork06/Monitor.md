@@ -36,8 +36,10 @@ Clusters -> Create cluster -> Create
 
 На странице кластера ADB перейти на закладку Import и выполнить импорт кластера Monitoring с сервисами Graphana, Graphite.
    
-На странице кластера Monitoring выполнить действие "Install".   
-
+На странице кластера Monitoring выполнить действие "Install".  
+   
+Примечание. В сответствии с документацией, подключение Grafana к Arenadata DB 7.2 выполняется напрямую, а не через Prometheus.   
+   
 ### Открытие окон мониторинга ###   
 Открытие окна Graphite (порт 80 можно не указывать в адресе): http://192.168.2.145   
    
@@ -51,3 +53,4 @@ Clusters -> Create cluster -> Create
    
 Еще пример мониторинга Graphana:   
 [Graphana. Пример 2.](ArenadataSystemMetrics_2.jpg)   
+   
