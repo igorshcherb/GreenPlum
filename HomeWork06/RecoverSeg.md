@@ -126,4 +126,5 @@ select * from gp_configuration_history where dbid = 4;
 |2024-12-23 10:20:34.646 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to m, u, and s|
 |2024-12-23 10:33:37.002 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and n|
 |2024-12-23 10:33:45.298 +0300|4|FTS: update role, status, and mode for dbid 4 with contentid 2 to p, u, and s|
-   
+      
+Создан в 08:01, выключен в 08:33, восстановлен в 10:20, ребалансирован в 10:33.   
