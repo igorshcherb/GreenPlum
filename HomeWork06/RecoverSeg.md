@@ -115,7 +115,7 @@ $ python3 gpstate -e
 20241223:12:27:28:211479 gpstate:master:gpadmin-[INFO]:-All segments are running normally
 ```
 
-### История изменения статуса одного из сегментов ###
+### История изменения ролей и статусов одного из сегментов ###
 ```   
 select * from gp_configuration_history where dbid = 4;   
 ```
