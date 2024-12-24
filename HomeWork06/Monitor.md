@@ -21,7 +21,7 @@ Clusters -> Create cluster -> Create
 * Product version: 4.1.0-1_community   
 * Cluster name: Monitoring cluster (например)
    
-На странице кластера: Services -> Add service
+На странице кластера Monitoring: Services -> Add service
 * Diamond
 * Graphana
 * Graphite
