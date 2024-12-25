@@ -48,3 +48,21 @@ select * from t1 order by id limit 10;
 |8|\xc30d04070302a69dcba305e1654965d23201cf875a811367777884578f097e6c6a716d59e7895a74c3479e712c86236c25af79545394b851b6021209ab36dfb1214b45|
 |9|\xc30d0407030206756eb1ae69211175d232015ac8843438603ff476add90fd2ab6d32949766bb963ccf4e2fc8115a7154710c71e466127b5a5ff5f07b82b15630c91b17|
 |10|\xc30d04070302f68002d8e4c978c76dd233010047019f39956af9bb45ddca64a0ec4bf5768c31745ba483a37989d6c5f903c8e4930b55b0f202411dd124beafd298e7d23d|
+   
+Дешифровка значений из столбца txt:   
+```
+select id, pgp_sym_decrypt(txt::bytea, '$1$WLGc27a9$g5x0O./rAwreF0eEpuXDF.') as decrypt_txt from t1 order by id limit 10;
+```
+|id|decrypt_txt|
+|--|-----------|
+|1|1|
+|2|2|
+|3|3|
+|4|4|
+|5|5|
+|6|6|
+|7|7|
+|8|8|
+|9|9|
+|10|10|
+
