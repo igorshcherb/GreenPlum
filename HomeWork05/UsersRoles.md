@@ -11,7 +11,7 @@ Username: admin2.
 Access manager -> Groups -> Create group.    
 В окне "Create new users group":   
 Groupname: group2.   
-Users:admin2.   
+Users: admin2.   
 
 ### Предоставление прав пользователю через группу в ADCM ###  
 Access manager -> Policies -> Create policy.   
