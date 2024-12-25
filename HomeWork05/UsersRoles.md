@@ -21,49 +21,14 @@ Role: Cluster Administrator.
 Groups: group2.   
      
 В результате пользователь admin2 получил следующие права:   
-* Remove service
-* Upgrade cluster bundle
-* Remove bundle
-* Edit object ansible config
-* Cluster Action: Activate standby
-* Cluster Action: Activate standby postprocess
-* Cluster Action: Check
-* Cluster Action: Expand
-* Cluster Action: Init Standby Master
-* Cluster Action: Install
-* Cluster Action: Post upgrade changes
-* Cluster Action: Precheck
-* Cluster Action: Reconfigure parameter archiving
-* Cluster Action: Redistribute
-* Cluster Action: Reinstall
-* Cluster Action: Reinstall statuschecker
-* Cluster Action: Start
-* Cluster Action: Stop
-* Cluster Action: Upgrade
-* Service Action: Create database
-* Service Action: Create role
-* Service Action: Disable auto core dump
-* Service Action: Enable auto core dump
-* Service Action: Enable mirroring
-* Service Action: Init cluster
-* Service Action: Install ADB
-* Service Action: Install diskquota
-* Service Action: Install PostGIS
-* Service Action: Reconfigure
-* Service Action: Reinstall ADB
-* Service Action: Reinstall diskquota
-* Service Action: Reinstall PostGIS
-* Service Action: Run SQL
-* Service Action: Start
-* Service Action: Stop
-* Service Action: Uninstall diskquota
-* Service Action: Uninstall PostGIS
-* Service Action: Manage tablespace
-* Service Action: Delete
-* Service Action: Install
-* Service Action: Reinstall
-* Service Action: Uninstall
-* Service Action: Restart
-* Cluster Action: Remove
-* Cluster Action: Upgrade: 4.1.0-1
-* Service Action: Uninstall Diamond
+* Remove service, Upgrade cluster bundle, Remove bundle, Edit object ansible config.   
+* **Cluster Action:** Activate standby, Activate standby postprocess, Check, Expand, Init Standby Master, Install, Post upgrade changes, Precheck, Reconfigure parameter archiving, Redistribute, Reinstall, Reinstall statuschecker, Start, Stop, Upgrade, Remove, Upgrade: 4.1.0-1.   
+* **Service Action:** Create database, Create role, Disable auto core dump, Enable auto core dump, Enable mirroring, Init cluster, Install ADB, Install diskquota, Install PostGIS, Reconfigure, Reinstall ADB, Reinstall diskquota, Reinstall PostGIS, Run SQL, Start, Stop, Uninstall diskquota, Uninstall PostGIS, Manage tablespace, Delete, Install, Reinstall, Uninstall, Restart, Uninstall Diamond.   
+
+### Создание пользователя в БД ###   
+```
+create role testuser 
+  with login connection limit -1 
+  resource group default_group
+  password 'testuser';
+```
