@@ -46,6 +46,8 @@ create role testuser
 grant usage on schema schema1 to testuser;
 grant select on schema1.t1 to testuser;
 ```
+   
+### Проверка прав доступа пользователя в БД ###
 Пользователь testuser без ошибок выполняет запрос:   
 ```
 select * from schema1.t1;
