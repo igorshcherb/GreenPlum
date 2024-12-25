@@ -10,6 +10,8 @@ select oid, extname, extversion from pg_extension where extname = 'pgcrypto';
 |oid|extname|extversion|
 |---|-------|----------|
 |24854|pgcrypto|1.3|
+
+Задание значения параметра shared_preload_libraries:   
 ```
 $ su gpadmin
 $ cd /usr/lib/gpdb/bin
