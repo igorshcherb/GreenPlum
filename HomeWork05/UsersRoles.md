@@ -25,7 +25,7 @@ Groups: group2.
 * **Cluster Action:** Activate standby, Activate standby postprocess, Check, Expand, Init Standby Master, Install, Post upgrade changes, Precheck, Reconfigure parameter archiving, Redistribute, Reinstall, Reinstall statuschecker, Start, Stop, Upgrade, Remove, Upgrade: 4.1.0-1.   
 * **Service Action:** Create database, Create role, Disable auto core dump, Enable auto core dump, Enable mirroring, Init cluster, Install ADB, Install diskquota, Install PostGIS, Reconfigure, Reinstall ADB, Reinstall diskquota, Reinstall PostGIS, Run SQL, Start, Stop, Uninstall diskquota, Uninstall PostGIS, Manage tablespace, Delete, Install, Reinstall, Uninstall, Restart, Uninstall Diamond.
    
-### Создание схем и таблиц ###   
+### Создание схем и таблиц в БД ###   
 Пользователем gpadmin были созданы таблицы:
 ```
 create table schema1.t1(id int8, vc varchar) distributed by (id);
