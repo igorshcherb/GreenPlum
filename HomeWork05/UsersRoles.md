@@ -26,7 +26,11 @@ Groups: group2.
 * **Service Action:** Create database, Create role, Disable auto core dump, Enable auto core dump, Enable mirroring, Init cluster, Install ADB, Install diskquota, Install PostGIS, Reconfigure, Reinstall ADB, Reinstall diskquota, Reinstall PostGIS, Run SQL, Start, Stop, Uninstall diskquota, Uninstall PostGIS, Manage tablespace, Delete, Install, Reinstall, Uninstall, Restart, Uninstall Diamond.
    
 ### Создание схем и таблиц в БД ###   
-Пользователем gpadmin были созданы таблицы:
+Пользователем gpadmin были созданы схемы и таблицы:
+```
+create schema schema1;
+create schema schema2;
+```
 ```
 create table schema1.t1(id int8, vc varchar) distributed by (id);
 insert into schema1.t1 (select s, s::varchar from generate_series(1, 100) s);
