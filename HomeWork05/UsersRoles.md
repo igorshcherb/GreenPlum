@@ -8,7 +8,7 @@ Username: admin2.
 Поставил галочку "Grant ADCM Administrator's rights".   
    
 ### Создание группы пользователей в ADCM ###   
-Access manager -> Groups -> Create user.    
+Access manager -> Groups -> Create group.    
 В окне "Create new users group":   
 Groupname: group2.   
 Users:admin2.   
