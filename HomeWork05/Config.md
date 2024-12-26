@@ -17,5 +17,5 @@ host all all 0.0.0.0/0 trust
 ```
 postgresql.auto.conf:   
 ```
-listen_addresses = '*'
+listen_addresses = '192.168.2.141, 192.168.2.70, localhost'
 ```
