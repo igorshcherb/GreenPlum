@@ -13,7 +13,7 @@ listen_addresses = '*'
    
 pg_hba.conf:   
 ```
-host adb gp_admin 192.168.2.0/0 md5
+host adb gp_admin 192.168.2.0/24 md5
 ```
 postgresql.auto.conf:   
 ```
