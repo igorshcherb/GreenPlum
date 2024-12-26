@@ -9,3 +9,13 @@ postgresql.auto.conf:
 ```
 listen_addresses = '*'
 ```
+Но возможны более жесткие варианты, например:   
+   
+pg_hba.conf:   
+```
+host all all 0.0.0.0/0 trust
+```
+postgresql.auto.conf:   
+```
+listen_addresses = '*'
+```
