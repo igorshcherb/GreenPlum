@@ -1,6 +1,7 @@
 ## Проектная работа по курсу "Greenplum для разработчиков и архитекторов баз данных" ##
    
-# Оптимизация запросов в MPP-кластерах: Greenplum, Arenadata DB, Cloudberry Database #
+# Оптимизация запросов в MPP-кластерах: #
+    # Greenplum, Arenadata DB, Cloudberry Database #
 
 **Цель проекта:**   
 Разбор методов оптимизации запросов в MPP-кластерах   
