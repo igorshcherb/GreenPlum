@@ -12,7 +12,7 @@
 3. Разобрать методы оптимизации на различных примерах   
 4. Проанализировать планы выполнения запросов   
 
-Презентация: [PPT](Project_Optimization.ppt) [PDF](Project_Optimization.pdf)   
+Презентация: [PPTX](Project_Optimization.pptx) [PDF](Project_Optimization.pdf)   
 
 
 
