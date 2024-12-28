@@ -1,4 +1,4 @@
-## Проектная работа по курсу "Greenplum для разработчиков и архитекторов баз данных" ##
+## <div align="center"> Проектная работа по курсу "Greenplum для разработчиков и архитекторов баз данных" <div align="center"> ##
    
 # <div align="center"> Оптимизация запросов в MPP-кластерах: </div> #
 # <div align="center"> Greenplum, Arenadata DB, Cloudberry Database </div> #
