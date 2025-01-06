@@ -8,14 +8,16 @@
    
 **Задачи проекта:**   
 1. Собрать методы оптимизации запросов из разных источников.   
-2. Подготовить стенды Greenplum, Arenadata DB, Cloudberry Database.   
+2. Подготовить стенды MPP-кластеров: Greenplum, Arenadata DB, Cloudberry Database.   
 3. Разобрать методы оптимизации на различных примерах сложных запросов.  
 4. Проанализировать планы выполнения запросов.   
 
 Презентация: [PPTX](Project_Optimization.pptx) [PDF](Project_Optimization.pdf)   
 
+**Создание кластера Arenadata DB**   
 * [Создание таблиц PostgreSQL](create_Postgres_tables.sql)
+**Загрузка данных в ADB**   
 * [Создание внешних таблиц](create_ext_tables.sql)
-* [Создание таблиц ADB](create_adb_tables.sql)
+* [Создание и заполнение таблиц ADB](create_adb_tables.sql)
 
 
