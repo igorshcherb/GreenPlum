@@ -15,6 +15,8 @@
 Презентация: [PPTX](Project_Optimization.pptx) [PDF](Project_Optimization.pdf)   
 
 **Создание кластера Arenadata DB**   
+
+**Загрузка данных в БД PostgreSQL**   
 * [Создание таблиц PostgreSQL](create_Postgres_tables.sql)   
    
 **Загрузка данных в ADB**   
