@@ -14,6 +14,7 @@
 
 Презентация: [PPTX](Project_Optimization.pptx) [PDF](Project_Optimization.pdf)   
 
+* [Создание таблиц PostgreSQL](create_Postgres_tables.sql)
 * [Создание внешних таблиц](create_ext_tables.sql)
 * [Создание таблиц ADB](create_adb_tables.sql)
 
