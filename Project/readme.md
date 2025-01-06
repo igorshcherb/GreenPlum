@@ -15,10 +15,10 @@
 Презентация: [PPTX](Project_Optimization.pptx) [PDF](Project_Optimization.pdf)   
 
 **Создание кластера Arenadata DB**   
-### [Создание шаблона виртуальных машин в VirtualBox](VMTemplate.md) ###
-### [Клонирование и настройка виртуальных машин](VMClone.md) ###
-### [Установка Arenadata 7.2](InstallArenadata7.2.md) ###
-### [Установка PXF - Platform Extension Framework](Install_PXF.md) ###
+* [Создание шаблона виртуальных машин в VirtualBox](VMTemplate.md)   
+* [Клонирование и настройка виртуальных машин](VMClone.md)   
+* [Установка Arenadata 7.2](InstallArenadata7.2.md)   
+* [Установка PXF - Platform Extension Framework](Install_PXF.md)   
 
 **Загрузка данных в БД PostgreSQL**   
 * [Создание таблиц PostgreSQL](create_Postgres_tables.sql)   
