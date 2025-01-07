@@ -14,7 +14,7 @@
 
 Презентация: [PPTX](Project_Optimization.pptx) [PDF](Project_Optimization.pdf)   
 
-**Создание кластера Arenadata DB 7.2**   
+**Создание Multi-Node кластера Arenadata DB 7.2 с помощью ADCM и бандлов**   
 * [Создание шаблона виртуальных машин в VirtualBox](VMTemplate.md)   
 * [Клонирование и настройка виртуальных машин](VMClone.md)   
 * [Установка Arenadata DB 7.2](InstallArenadata7.2.md)   
