@@ -65,6 +65,9 @@ Hosts -> Create host
 Hostprovider: SSH   
 Name: ADCM (master, segment-1, segment-2)   
    
+Задание параметров хоста:   
+Параметры: Password, SSH private key, Connection address (IP адрес ВМ).   
+   
 ### Создание и настройка кластера ###   
 
 Загрузка бандла ADB:   
@@ -91,9 +94,6 @@ Hosts -> Add host
    
 Операция с хостом:   
 Check connection   
-
-Задание параметров хоста:   
-Параметры: Password, SSH private key, Connection address (IP адрес ВМ).   
 
 Добавление хостов в кластер:   
 Выбрать кластер. Вкладка Hosts.   
