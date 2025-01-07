@@ -97,7 +97,7 @@ Action -> Install
    
 Mapping:   
 Clasters -> ADB cluster -> Mapping   
-Задать хосты для ADB Master, ADB Segment, Standby.   
+Задать хосты для ADB Master, ADB Segment.   
 
 Операции с кластером:   
 Precheck   
