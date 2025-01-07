@@ -114,7 +114,7 @@ listen_addresses = '*'
 ### Запуск Arenadata в ADCM: ###   
 Clusters -> ADB Cluster -> Services -> ADB -> Action: Start   
 
-### Запуск Arenadata из командной строки: ###   
+### Запуск Arenadata из командной строки (на master): ###   
 ```
 $ cd /usr/lib/gpdb/bin
 $ su gpadmin
