@@ -12,6 +12,7 @@ https://disk.yandex.ru/d/ruXcxej6je-cJw
 ```
 ip a   
 ```
+У меня - 192.168.2.16.
    
 Запуск консоли в хостовой ОС (Windows):   
 ```
