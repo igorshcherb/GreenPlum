@@ -31,3 +31,8 @@ network:
 |segment-1|8|   
 |segment-2|8|   
    
+Создание SSH-ключей:   
+$ ssh-keygen   
+Папка по умолчанию: \home\admn\.ssh   
+Без passphrase.   
+   
