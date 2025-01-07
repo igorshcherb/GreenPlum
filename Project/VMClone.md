@@ -22,9 +22,5 @@ network:
      nameservers:   
          addresses: [192.168.2.1,192.168.2.1]   
 ```
-- Разрешение заходить по SSH под root:   
-$ sudo nano /etc/ssh/sshd_config   
-PermitRootLogin yes   
-PasswordAuthentication yes   
-$ systemctl restart ssh || systemctl restart sshd
+
    
