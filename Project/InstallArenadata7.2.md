@@ -75,7 +75,11 @@ Product version: 7.2.0_arenadata1_b1-1 (community)
 Cluster name: ADB Cluster   
 
 Добавление сервиса ADB:   
-Выбрать кластер. Вкладка Services. [Add service]. ADB.   
+Выбрать кластер. Вкладка Services -> Add service -> ADB.   
+**Configuration -> Main -> Use segment mirroring: false**   
+**Configuration -> Advanced -> Number of segments per host: 2**   
+**Configuration -> Advanced -> Custom pg_hba section: host all all 0.0.0.0/0 trust**   
+Action -> Install
 
 Создание хостов:   
 Hosts -> Create host   
