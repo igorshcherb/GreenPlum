@@ -91,13 +91,10 @@ Cluster name: ADB Cluster
 **Configuration -> Advanced -> Number of segments per host: 2**   
 **Configuration -> Advanced -> Custom pg_hba section: host all all 0.0.0.0/0 trust**   
 Action -> Install
-
-Добавление хостов:   
-Hosts -> Add host   
    
 Добавление хостов в кластер:   
-Выбрать кластер. Вкладка Hosts.   
-
+Выбрать кластер. Вкладка Hosts -> Add host.   
+   
 Mapping:   
 Clasters -> ADB cluster -> Mapping   
 Задать хосты для ADB Master, ADB Segment, Standby.   
