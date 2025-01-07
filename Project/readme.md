@@ -18,7 +18,8 @@
 * [Создание шаблона виртуальных машин в VirtualBox](VMTemplate.md)   
 * [Клонирование и настройка виртуальных машин](VMClone.md)   
 * [Установка Arenadata DB 7.2](InstallArenadata7.2.md)   
-* [Установка PXF - Platform Extension Framework](Install_PXF.md)   
+* [Установка PXF - Platform Extension Framework](Install_PXF.md)
+* [Конфигурация кластера Arenadata DB](arenadata_config.md)   
 
 **Загрузка данных в БД PostgreSQL**   
 * [Источники БД "Авиаперевозки"](air_db.md)
