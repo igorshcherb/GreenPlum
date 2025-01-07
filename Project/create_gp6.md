@@ -6,3 +6,20 @@ https://disk.yandex.ru/d/ruXcxej6je-cJw
 
 Импортировние файла формата ova в VirtualBox.   
 
+Запустить образ: логин/пароль gpadmin/gpadmin.   
+   
+Определить IP-адрес ВМ:  
+```
+ip a   
+```
+   
+Запуск консоли в хостовой ОС (Windows):   
+```
+$ssh gpadmin@192.168.2.16
+```
+Выполнение команд в консоли:   
+```
+$ gpstart   
+$ pxf start
+```
+   
