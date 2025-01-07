@@ -80,7 +80,7 @@ Cluster name: ADB Cluster
 Создание хостов:   
 Hosts -> Create host   
 Hostprovider: SSH   
-Name: ADCM (master, standby, segment)   
+Name: ADCM (master, segment-1, segment-2)   
 Cluster: ADB Cluster   
 
 Операция с хостом:   
