@@ -43,3 +43,8 @@
   $ sudo apt install openssh-server  
 - Установка Midnight Commander:   
   sudo apt -y install mc
+- Разрешение заходить по SSH под root:   
+  $ sudo nano /etc/ssh/sshd_config   
+  PermitRootLogin yes   
+  PasswordAuthentication yes   
+  $ systemctl restart ssh || systemctl restart sshd
