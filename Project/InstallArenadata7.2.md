@@ -68,6 +68,9 @@ Name: ADCM (master, segment-1, segment-2)
 Задание параметров хоста:   
 Параметры: Password, SSH private key, Connection address (IP адрес ВМ).   
    
+Операция с хостом:   
+Check connection   
+   
 ### Создание и настройка кластера ###   
 
 Загрузка бандла ADB:   
@@ -92,9 +95,6 @@ Action -> Install
 Добавление хостов:   
 Hosts -> Add host   
    
-Операция с хостом:   
-Check connection   
-
 Добавление хостов в кластер:   
 Выбрать кластер. Вкладка Hosts.   
 
