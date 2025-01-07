@@ -104,7 +104,7 @@ Precheck
 Install   
 
 ### Соединение DBeaver c Master БД: ###   
-На хосте master-1 в папке /data1/master/gpseg-1    
+На хосте master в папке /data1/master/gpseg-1    
 в файл pg_hba.conf добавить строку   
 host     all            all         0.0.0.0/0           trust   
 в файл postgresql.auto.conf добавить строку   
