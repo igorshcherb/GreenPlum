@@ -109,7 +109,7 @@ Install
 host     all            all         0.0.0.0/0           trust   
 в файл postgresql.auto.conf добавить строку   
 listen_addresses = '*'   
-Объект "Соединение" в DBeaver: host: 192.168.2.141, порт: 5432, БД: adb, пользователь: gpadmin/gpadmin.   
+Объект "Соединение" в DBeaver: host: 192.168.2.151, порт: 5432, БД: adb, пользователь: gpadmin/admin.   
 
 ### Запуск Arenadata в ADCM: ###   
 Clusters -> ADB Cluster -> Services -> ADB -> Action: Start   
