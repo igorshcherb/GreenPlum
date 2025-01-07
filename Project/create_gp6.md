@@ -6,9 +6,9 @@ https://disk.yandex.ru/d/ruXcxej6je-cJw
 
 Импортировние файла формата ova в VirtualBox.   
 
-Запустить образ: логин/пароль gpadmin/gpadmin.   
+Запуск образа: логин/пароль gpadmin/gpadmin.   
    
-Определить IP-адрес ВМ:  
+Определение IP-адреса ВМ:  
 ```
 ip a   
 ```
