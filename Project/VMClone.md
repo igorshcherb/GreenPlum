@@ -6,7 +6,7 @@
 - IP-адреса хостов:   
    ADCM      192.168.2.150   
    master    192.168.2.151   
-   segment-1 192.168.2.153
+   segment-1 192.168.2.153   
    segment-2 192.168.2.154   
 - Задание статических IP:   
   $ sudo nano /etc/netplan/01-network-manager-all.yaml
