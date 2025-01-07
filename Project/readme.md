@@ -21,6 +21,7 @@
 * [Установка PXF - Platform Extension Framework](Install_PXF.md)   
 
 **Загрузка данных в БД PostgreSQL**   
+* [Источники БД "Авиаперевозки"](air_db.md)   
 * [Создание таблиц PostgreSQL](create_Postgres_tables.sql)   
    
 **Загрузка данных в ADB**   
