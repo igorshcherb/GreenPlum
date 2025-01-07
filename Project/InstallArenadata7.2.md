@@ -55,11 +55,6 @@ Type: SSH Common
 Version: 2.1-1   
 Name: SSH   
 
-Создание SSH-ключей:   
-$ ssh-keygen   
-Папка по умолчанию: \home\admn\.ssh   
-Без passphrase.   
-
 Настройка хостпровайдера:   
 Hostproviders -> SSH   
 Перевести в активное состояние переключатель Show advanced.   
