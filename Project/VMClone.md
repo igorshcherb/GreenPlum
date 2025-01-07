@@ -2,13 +2,12 @@
 
 - замена сетевых имен после клонирования виртуальных машин:  
   $ sudo nano /etc/hostname  
-  ADCM-1  
-  и т.д.  
+  ADCM, master, segment-1, segment-1.   
 - IP-адреса хостов:   
-   ADCM-1    192.168.2.140   
-   master-1  192.168.2.141   
-   standby-1 192.168.2.142   
-   segment-1 192.168.2.143   
+   ADCM      192.168.2.150   
+   master    192.168.2.151   
+   segment-1 192.168.2.153
+   segment-2 192.168.2.154   
 - Задание статических IP:   
   $ sudo nano /etc/netplan/01-network-manager-all.yaml
 ```   
@@ -18,7 +17,7 @@ network:
   ethernets:   
    enp0s3:   
      dhcp4: no   
-     addresses: [192.168.2.140/24]   
+     addresses: [192.168.2.151/24]   
      gateway4: 192.168.2.1   
      nameservers:   
          addresses: [192.168.2.1,192.168.2.1]   
