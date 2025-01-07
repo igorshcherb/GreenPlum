@@ -29,5 +29,5 @@
 **Загрузка данных в ADB**   
 * [Создание внешних таблиц](create_ext_tables.sql)   
 * [Создание и заполнение таблиц ADB](create_adb_tables.sql)   
-
-
+   
+[**Создание Single-Node кластера Greenplum 6**](create_gp6.md)
