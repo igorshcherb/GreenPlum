@@ -3,7 +3,7 @@
 # <div align="center"> Оптимизация сложных запросов в MPP-кластерах: </div> #
 # <div align="center"> Greenplum, Arenadata DB, Cloudberry Database </div> #
    
-**Цели проекта:**   
+**Цель проекта:**   
 Разбор методов оптимизации сложных запросов в MPP-кластерах.   
    
 **Задачи проекта:**   
