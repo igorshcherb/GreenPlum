@@ -55,5 +55,6 @@ select * from gp_segment_configuration;
 |1|-1|p|p|n|u|55433|localhost|localhost|/gpdata/gpmaster/gpsne-1|
 |2|0|p|p|n|u|6000|localhost.localdomain|localhost|/gpdata/gpdata1/gpsne0|
 |3|1|p|p|n|u|6001|localhost.localdomain|localhost|/gpdata/gpdata2/gpsne1|
-
    
+Соединение с БД PostgreSQL на этой ВМ:
+Порт: 5432, пользователь: pxf_user/pxf_user
