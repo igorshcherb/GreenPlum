@@ -114,3 +114,11 @@ listen_addresses = '*'
 ### Запуск Arenadata в ADCM: ###   
 Clusters -> ADB Cluster -> Services -> ADB -> Action: Start   
 
+### Запуск Arenadata из командной строки: ###   
+```
+$ cd /usr/lib/gpdb/bin
+$ su gpadmin
+$ source /usr/lib/gpdb/greenplum_path.sh
+$ export COORDINATOR_DATA_DIRECTORY=/data1/master/gpseg-1
+$ python3 gpstart
+```
