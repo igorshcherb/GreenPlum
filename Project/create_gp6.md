@@ -39,4 +39,21 @@ $ pxf start
       
 Загрузка данных - аналогично Arenadata DB. Тип jsonb пришлось везде заменить на text.   
 
+```   
+select version();
+```
+```
+PostgreSQL 9.4.26 (Greenplum Database 6.23.0 build commit:5b5e432f35f92a40c18dffe4e5bca94790aae83c Open Source) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 20 2022 08:02:23
+```
+
+```
+select * from gp_segment_configuration;
+```
+   
+|dbid|content|role|preferred_role|mode|status|port|hostname|address|datadir|
+|----|-------|----|--------------|----|------|----|--------|-------|-------|
+|1|-1|p|p|n|u|55433|localhost|localhost|/gpdata/gpmaster/gpsne-1|
+|2|0|p|p|n|u|6000|localhost.localdomain|localhost|/gpdata/gpdata1/gpsne0|
+|3|1|p|p|n|u|6001|localhost.localdomain|localhost|/gpdata/gpdata2/gpsne1|
+
    
