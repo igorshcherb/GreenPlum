@@ -59,7 +59,12 @@ Name: SSH
 Hostproviders -> SSH   
 Перевести в активное состояние переключатель Show advanced.   
 Задать значения параметров: Ssh keys, Password, SSH private key.   
-
+   
+Создание хостов:   
+Hosts -> Create host   
+Hostprovider: SSH   
+Name: ADCM (master, segment-1, segment-2)   
+   
 ### Создание и настройка кластера ###   
 
 Загрузка бандла ADB:   
@@ -81,12 +86,9 @@ Cluster name: ADB Cluster
 **Configuration -> Advanced -> Custom pg_hba section: host all all 0.0.0.0/0 trust**   
 Action -> Install
 
-Создание хостов:   
-Hosts -> Create host   
-Hostprovider: SSH   
-Name: ADCM (master, segment-1, segment-2)   
-Cluster: ADB Cluster   
-
+Добавление хостов:   
+Hosts -> Add host   
+   
 Операция с хостом:   
 Check connection   
 
