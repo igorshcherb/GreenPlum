@@ -113,7 +113,9 @@ listen_addresses = '*'
 
 ### Запуск кластера Arenadata DB в ADCM: ###   
 Clusters -> ADB Cluster -> Services -> ADB -> Action: Start   
-
+   
+**После установки кластера Arenadata DB можно не запускать ADCM - запуск и остановку кластера выполнять из командной строки.**   
+   
 ### Запуск кластера Arenadata DB из командной строки (на master): ###   
 ```
 $ cd /usr/lib/gpdb/bin
@@ -131,3 +133,4 @@ $ source /usr/lib/gpdb/greenplum_path.sh
 $ export COORDINATOR_DATA_DIRECTORY=/data1/master/gpseg-1
 $ python3 gpstop
 ```
+   
