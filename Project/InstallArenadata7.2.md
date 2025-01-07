@@ -111,14 +111,23 @@ host     all            all         0.0.0.0/0           trust
 listen_addresses = '*'   
 Объект "Соединение" в DBeaver: host: 192.168.2.151, порт: 5432, БД: adb, пользователь: gpadmin/admin.   
 
-### Запуск Arenadata в ADCM: ###   
+### Запуск кластера Arenadata DB в ADCM: ###   
 Clusters -> ADB Cluster -> Services -> ADB -> Action: Start   
 
-### Запуск Arenadata из командной строки (на master): ###   
+### Запуск кластера Arenadata DB из командной строки (на master): ###   
 ```
 $ cd /usr/lib/gpdb/bin
 $ su gpadmin
 $ source /usr/lib/gpdb/greenplum_path.sh
 $ export COORDINATOR_DATA_DIRECTORY=/data1/master/gpseg-1
 $ python3 gpstart
+```
+   
+### Остановка кластера Arenadata DB из командной строки (на master): ###   
+```
+$ cd /usr/lib/gpdb/bin
+$ su gpadmin
+$ source /usr/lib/gpdb/greenplum_path.sh
+$ export COORDINATOR_DATA_DIRECTORY=/data1/master/gpseg-1
+$ python3 gpstop
 ```
