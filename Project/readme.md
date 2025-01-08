@@ -12,7 +12,7 @@
 3. Разобрать методы оптимизации на различных примерах.  
 4. Проанализировать планы выполнения запросов.   
 
-Презентация: [PPTX](Project_Optimization.pptx) [PDF](Project_Optimization.pdf)   
+[Презентация PDF](Project_Optimization.pdf) [PPTX](Project_Optimization.pptx)    
 
 **Создание Multi-Node кластера Arenadata DB 7.2 с помощью ADCM и бандлов**   
 * [Создание шаблона виртуальных машин в VirtualBox](VMTemplate.md)   
