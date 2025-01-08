@@ -18,3 +18,9 @@ sudo ./run.sh
 ```
 sudo docker exec -it $(sudo docker ps -q) /bin/bash
 ```
+
+Запуск psql в контейнере:
+```
+$ psql
+```
+
