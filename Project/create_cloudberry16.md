@@ -24,7 +24,7 @@ $ git clone https://github.com/cloudberrydb/cloudberrydb.git
 ```
    
 ### Шаг 2. Установка зависимостей ###
-For Ubuntu 18.04 or later   
+Для Ubuntu 18.04 или старше   
 ```
 ## You need to enter your password to run.
 $ sudo ~/cloudberrydb/deploy/build/README.Ubuntu.bash
