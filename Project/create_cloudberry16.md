@@ -129,7 +129,9 @@ select setting from pg_settings where name = 'listen_addresses';
 ```
 cd /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1
 ```
-
+в файл pg_hba.conf добавить строку   
+host all all 0.0.0.0/0 trust   
+   
 
 
 
