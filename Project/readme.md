@@ -33,3 +33,5 @@
 [**Создание Single-Node кластера Greenplum 6.23 (песочница)**](create_gp6.md)
    
 [**Создание Single-Node кластера Cloudberry v1.5.1 (песочница)**](create_cloudberry.md)   
+   
+[**Создание Single-Node кластера Cloudberry v1.6 (из исходников)**](create_cloudberry16.md)  
