@@ -97,8 +97,12 @@ select version();
 select * from gp_segment_configuration;
 ```
    
-
-
+### Запуск кластера ###
+```
+source /usr/local/cloudberrydb/greenplum_path.sh
+export COORDINATOR_DATA_DIRECTORY=/home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1   
+python3 gpstart
+```
 
 
 
