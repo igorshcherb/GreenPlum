@@ -44,7 +44,7 @@ $ sudo apt install gcc-10 g++-10
 $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100
 ```
    
-### Шаг 3. Perform prerequisite platform tasks ###
+### Шаг 3. Предварительная настройка платформы ###
 ```
 $ echo -e "/usr/local/lib \n/usr/local/lib64" >> /etc/ld.so.conf
 $ ldconfig
@@ -58,7 +58,7 @@ $ chmod 600 ~/.ssh/authorized_keys
 $ exit
 ```
    
-### Шаг 4. Build Cloudberry Database ###
+### Шаг 4. Сборка Cloudberry Database ###
 ```
 $ cd cloudberrydb
 $ ./configure --with-perl --with-python --with-libxml --with-gssapi --prefix=/usr/local/cloudberrydb
