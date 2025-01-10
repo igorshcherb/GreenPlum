@@ -149,6 +149,12 @@ cd /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1
 ```
 в файл pg_hba.conf добавить строку   
 host all all 0.0.0.0/0 trust   
+
+* Хост: 192.168.2.160   
+* Порт: 7000
+* Пользователь: gpadmin
+* Пароль: gpadmin
+     
    
 
 
