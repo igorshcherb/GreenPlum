@@ -94,6 +94,11 @@ $ psql -p 7000 postgres
 select version();
 ```
 ```
+PostgreSQL 14.4 (Cloudberry Database 1.6.0+dev.641.ge36838cea1 build dev) on x8
+6_64-pc-linux-gnu, compiled by gcc (Ubuntu 10.5.0-1ubuntu1~22.04) 10.5.0, 64-bit
+ compiled on Jan 10 2025 17:45:11
+```
+```
 select * from gp_segment_configuration;
 ```
    
