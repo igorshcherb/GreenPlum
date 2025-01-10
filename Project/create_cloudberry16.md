@@ -101,16 +101,16 @@ PostgreSQL 14.4 (Cloudberry Database 1.6.0+dev.641.ge36838cea1 build dev) on x8
 ```
 select * from gp_segment_configuration;
 ```
- dbid | content | role | preferred_role | mode | status | port |   hostname   |   address    |                                   datadir                                    | warehouseid 
-------+---------+------+----------------+------+--------+------+--------------+--------------+------------------------------------------------------------------------------+-------------
-    1 |      -1 | p    | p              | n    | u      | 7000 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1         |           0
-    8 |      -1 | m    | m              | s    | u      | 7001 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/standby                     |           0
-    2 |       0 | p    | p              | s    | u      | 7002 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast1/demoDataDir0        |           0
-    5 |       0 | m    | m              | s    | u      | 7005 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast_mirror1/demoDataDir0 |           0
-    3 |       1 | p    | p              | s    | u      | 7003 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast2/demoDataDir1        |           0
-    6 |       1 | m    | m              | s    | u      | 7006 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast_mirror2/demoDataDir1 |           0
-    4 |       2 | p    | p              | s    | u      | 7004 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast3/demoDataDir2        |           0
-    7 |       2 | m    | m              | s    | u      | 7007 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast_mirror3/demoDataDir2 |           0
+| dbid | content | role | preferred_role | mode | status | port |   hostname   |   address    |                                   datadir                                    | warehouseid |
+|------|---------|------|----------------|------|--------|------|--------------|--------------|------------------------------------------------------------------------------|-------------|
+|    1 |      -1 | p    | p              | n    | u      | 7000 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1         |           0 |
+|    8 |      -1 | m    | m              | s    | u      | 7001 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/standby                     |           0 |
+|    2 |       0 | p    | p              | s    | u      | 7002 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast1/demoDataDir0        |           0 |
+|    5 |       0 | m    | m              | s    | u      | 7005 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast_mirror1/demoDataDir0 |           0 |
+|    3 |       1 | p    | p              | s    | u      | 7003 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast2/demoDataDir1        |           0 |
+|    6 |       1 | m    | m              | s    | u      | 7006 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast_mirror2/demoDataDir1 |           0 |
+|    4 |       2 | p    | p              | s    | u      | 7004 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast3/demoDataDir2        |           0 |
+|    7 |       2 | m    | m              | s    | u      | 7007 | Cloudberry16 | Cloudberry16 | /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/dbfast_mirror3/demoDataDir2 |           0 |
    
 ### Запуск кластера ###
 ```
