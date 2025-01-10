@@ -117,7 +117,8 @@ select * from gp_segment_configuration;
 $ sudo -i
 $ su gpadmin
 $ source /usr/local/cloudberrydb/greenplum_path.sh
-$ export COORDINATOR_DATA_DIRECTORY=/home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1   
+$ export COORDINATOR_DATA_DIRECTORY=/home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1
+$ cd /usr/local/cloudberrydb/bin
 $ python3 gpstart
 ```
    
