@@ -7,7 +7,16 @@ Cloudberry16
 ```
 sudo nano /etc/netplan/01-network-manager-all.yaml
 ```
-
+network:   
+  version: 2   
+  renderer: NetworkManager   
+  ethernets:   
+   enp0s3:   
+     dhcp4: no   
+     addresses: [192.168.2.160/24]   
+     gateway4: 192.168.2.1   
+     nameservers:   
+         addresses: [192.168.2.1,192.168.2.1]   
    
 <Перезагрузка>   
 
