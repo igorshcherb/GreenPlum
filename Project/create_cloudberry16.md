@@ -120,7 +120,15 @@ $ source /usr/local/cloudberrydb/greenplum_path.sh
 $ export COORDINATOR_DATA_DIRECTORY=/home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1   
 $ python3 gpstart
 ```
-
+   
+### Соединение с DBeaver ###
+```
+select setting from pg_settings where name = 'listen_addresses';
+```
+*   
+```
+cd /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1
+```
 
 
 
