@@ -4,6 +4,10 @@
 $ sudo nano /etc/hostname
 ```
 Cloudberry16   
+```
+sudo nano /etc/netplan/01-network-manager-all.yaml
+```
+
    
 <Перезагрузка>   
 
