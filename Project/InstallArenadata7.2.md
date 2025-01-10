@@ -133,4 +133,12 @@ $ source /usr/lib/gpdb/greenplum_path.sh
 $ export COORDINATOR_DATA_DIRECTORY=/data1/master/gpseg-1
 $ python3 gpstop
 ```
-   
+
+### Соединение с DBeaver ###
+```
+select setting from pg_settings where name = 'listen_addresses';
+```
+*   
+```
+cd /home/gpadmin/cloudberrydb/gpAux/gpdemo/datadirs/qddir/demoDataDir-1
+```
