@@ -83,7 +83,7 @@ $ make create-demo-cluster
 $ source gpAux/gpdemo/gpdemo-env.sh
 ```
    
-### Шаг 5. Verify the cluster ###
+### Шаг 5. Проверка кластера ###
 ```
 $ ps -ef | grep postgres
 ```
