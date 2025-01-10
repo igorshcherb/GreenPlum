@@ -23,9 +23,11 @@ network:
 
 ```   
 $ hostname
-```
 Cloudberry16
-   
+$ ip a
+192.168.2.160
+```
+     
 ```
 $ sudo -i
 $ passwd
