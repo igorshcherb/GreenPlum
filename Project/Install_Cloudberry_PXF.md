@@ -55,6 +55,22 @@ cd /home/gpadmin/workspace/pxf/server/build/stage/pxf/bin
 export PXF_BASE=/home/gpadmin/pxf-base
 /bin/bash pxf prepare
 /bin/bash pxf start
-
+```
+В DBeaver:   
+```
 create extension pxf;
 ```
+**Запуск PXF-сервера**   
+```
+cd /home/gpadmin/workspace/pxf/server/build/stage/pxf/bin
+export PXF_BASE=/home/gpadmin/pxf-base
+/bin/bash pxf start
+```
+**Остановка PXF-сервера**   
+```
+cd /home/gpadmin/workspace/pxf/server/build/stage/pxf/bin
+export PXF_BASE=/home/gpadmin/pxf-base
+/bin/bash pxf stop
+```
+
+
