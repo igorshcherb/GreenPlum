@@ -92,7 +92,7 @@ make create-demo-cluster
 # (gpdemo-env.sh contains __PGPORT__ and __MASTER_DATA_DIRECTORY__ values)
 source gpAux/gpdemo/gpdemo-env.sh
 ```
-**Запуск и остановка кластера***
+**Запуск и остановка кластера**
 ```
 cd /usr/lib/gpdb/bin
 source /usr/local/gpdb/greenplum_path.sh
