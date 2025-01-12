@@ -37,6 +37,8 @@
 **Single-Node кластер Cloudberry v1.6**   
 * [Создание Single-Node кластера Cloudberry v1.6 (из исходников)](create_cloudberry16.md)   
 * [Установка PXF для кластера Cloudberry](Install_Cloudberry_PXF.md)   
-   
-[**Создание Single-Node кластера Arenadata DB 6.27 (из исходников)**](create_arenadata_6.md)   
+
+**Single-Node кластер Arenadata DB 6.27**   
+* [Создание Single-Node кластера Arenadata DB 6.27 (из исходников)](create_arenadata_6.md)
+* [Установка PXF для кластера Arenadata](Install_Arenadata_PXF.md)
    
