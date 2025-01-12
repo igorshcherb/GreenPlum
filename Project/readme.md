@@ -30,10 +30,13 @@
 * [Создание внешних таблиц](create_ext_tables.sql)   
 * [Создание и заполнение таблиц ADB](create_adb_tables.sql)   
    
-[**Создание Single-Node кластера Greenplum 6.23 (песочница)**](create_gp6.md)
+[**Создание Single-Node кластера Greenplum 6.23 (песочница)**](create_gp6.md)   
    
-[**Создание Single-Node кластера Cloudberry v1.5.1 (песочница)**](create_cloudberry.md)   
+[**Создание Single-Node кластера Cloudberry v1.5.1 (песочница)**](create_cloudberry.md)    
 
-**Single-Node кластер Cloudberry v1.6**
-* [Создание Single-Node кластера Cloudberry v1.6 (из исходников)](create_cloudberry16.md)
-* [Установка PXF для кластера Cloudberry](Install_Cloudberry_PXF.md)
+**Single-Node кластер Cloudberry v1.6**   
+* [Создание Single-Node кластера Cloudberry v1.6 (из исходников)](create_cloudberry16.md)   
+* [Установка PXF для кластера Cloudberry](Install_Cloudberry_PXF.md)   
+   
+[**Создание Single-Node кластера Arenadata DB 6.27 (из исходников)**](create_arenadata_6.md)   
+   
