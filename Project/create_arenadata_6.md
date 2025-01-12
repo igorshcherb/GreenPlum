@@ -9,7 +9,7 @@ Appropriate linux steps for getting your system ready for GPDB
 For Ubuntu (versions 20.04 or 22.04):
 -------------------------------------
 
-(cd ./gpdb_src/)
+cd ./gpdb_src/
 
 Install dependencies using README.ubuntu.bash script:
 sudo ./README.ubuntu.bash
