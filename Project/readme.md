@@ -30,9 +30,9 @@
 * [Создание внешних таблиц](create_ext_tables.sql)   
 * [Создание и заполнение таблиц ADB](create_adb_tables.sql)   
    
-[**Создание Single-Node кластера Greenplum 6.23 (песочница)**](create_gp6.md)   
+[**Запуск Single-Node кластера Greenplum 6.23 (песочница)**](create_gp6.md)   
    
-[**Создание Single-Node кластера Cloudberry v1.5.1 (песочница)**](create_cloudberry.md)    
+[**Запуск Single-Node кластера Cloudberry v1.5.1 (песочница)**](create_cloudberry.md)    
 
 **Single-Node кластер Cloudberry v1.6**   
 * [Создание Single-Node кластера Cloudberry v1.6 (из исходников)](create_cloudberry16.md)   
