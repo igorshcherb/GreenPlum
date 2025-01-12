@@ -112,7 +112,12 @@ psql postgres
 * Порт: 6000   
 * База данных: postgres   
 * Пользователь/пароль (у меня): admn/admn
-
+```
+cd /home/admn/gpdb_src/gpAux/gpdemo/datadirs/qddir/demoDataDir-1
+```
+В файл pg_hba.conf добавил строку:   
+host     all            all         0.0.0.0/0           trust   
+   
 ```
 select version();
 ```
