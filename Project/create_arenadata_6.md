@@ -84,8 +84,8 @@ sudo make -j8 install
 # Bring in greenplum environment into your running shell
 source /usr/local/gpdb/greenplum_path.sh
 
-(apt install python-pip
-pip2 install --upgrade psutil)
+apt install python-pip
+pip2 install --upgrade psutil
 
 # Start demo cluster
 make create-demo-cluster
