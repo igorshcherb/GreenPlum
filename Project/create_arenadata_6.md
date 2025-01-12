@@ -112,4 +112,23 @@ psql postgres
 * Порт: 6000   
 * База данных: postgres   
 * Пользователь/пароль (у меня): admn/admn
-    
+
+```
+select version();
+```
+```
+PostgreSQL 9.4.26 (Greenplum Database 6.27.1_arenadata59+dev.1.gcbb3338b74 build dev) on x86_64-unknown-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit compiled on Jan 11 2025 20:48:33
+```
+```
+select * from gp_segment_configuration order by content, dbid;
+```
+|dbid|content|role|preferred_role|mode|status|port|hostname|address|datadir|
+|----|-------|----|--------------|----|------|----|--------|-------|-------|
+|1|-1|p|p|n|u|6000|Arena627|Arena627|/home/admn/gpdb_src/gpAux/gpdemo/datadirs/qddir/demoDataDir-1|
+|2|0|p|p|s|u|6002|Arena627|Arena627|/home/admn/gpdb_src/gpAux/gpdemo/datadirs/dbfast1/demoDataDir0|
+|5|0|m|m|s|u|6005|Arena627|Arena627|/home/admn/gpdb_src/gpAux/gpdemo/datadirs/dbfast_mirror1/demoDataDir0|
+|3|1|p|p|s|u|6003|Arena627|Arena627|/home/admn/gpdb_src/gpAux/gpdemo/datadirs/dbfast2/demoDataDir1|
+|6|1|m|m|s|u|6006|Arena627|Arena627|/home/admn/gpdb_src/gpAux/gpdemo/datadirs/dbfast_mirror2/demoDataDir1|
+|4|2|p|p|s|u|6004|Arena627|Arena627|/home/admn/gpdb_src/gpAux/gpdemo/datadirs/dbfast3/demoDataDir2|
+|7|2|m|m|s|u|6007|Arena627|Arena627|/home/admn/gpdb_src/gpAux/gpdemo/datadirs/dbfast_mirror3/demoDataDir2|
+
