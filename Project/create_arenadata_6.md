@@ -83,10 +83,13 @@ sudo make -j8 install
 
 # Bring in greenplum environment into your running shell
 source /usr/local/gpdb/greenplum_path.sh
-
+```
+**Установка psutil для Python2 (!)**
+```
 apt install python-pip
 pip2 install --upgrade psutil
-
+```
+```
 # Start demo cluster
 make create-demo-cluster
 # (gpdemo-env.sh contains __PGPORT__ and __MASTER_DATA_DIRECTORY__ values)
