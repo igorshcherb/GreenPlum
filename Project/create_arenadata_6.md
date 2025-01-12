@@ -97,7 +97,7 @@ source gpAux/gpdemo/gpdemo-env.sh
 ```
 **Запуск и остановка кластера**
 ```
-cd /usr/lib/gpdb/bin
+cd /usr/local/gpdb/bin
 source /usr/local/gpdb/greenplum_path.sh
 export MASTER_DATA_DIRECTORY=/home/admn/gpdb_src/gpAux/gpdemo/datadirs/qddir/demoDataDir-1
 python2 gpstart
