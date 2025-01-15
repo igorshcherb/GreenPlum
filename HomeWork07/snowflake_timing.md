@@ -45,7 +45,31 @@ select o.o_orderkey,
        l.l_discount
 from orders o
      join lineitem l on l.l_orderkey = o.o_orderkey 
-```     
+```
+```
+Gather Motion 2:1  (slice1; segments: 2)  (cost=0.00..1344.60 rows=1199410 width=25) (actual time=589.233..9142.787 rows=1199969 loops=1)
+  ->  Hash Join  (cost=0.00..1209.97 rows=599705 width=25) (actual time=591.747..4241.806 rows=600656 loops=1)
+        Hash Cond: (l.l_orderkey = o.o_orderkey)
+        Extra Text: (seg1)   Hash chain length 1.2 avg, 6 max, using 130535 of 524288 buckets.
+        ->  Redistribute Motion 2:2  (slice2; segments: 2)  (cost=0.00..543.70 rows=599985 width=21) (actual time=0.016..2258.274 rows=600656 loops=1)
+              Hash Key: l.l_orderkey
+              ->  Dynamic Seq Scan on lineitem l  (cost=0.00..480.83 rows=599985 width=21) (actual time=10.685..2102.222 rows=600209 loops=1)
+                    Number of partitions to scan: 87 (out of 87)
+                    Partitions scanned:  Avg 87.0 x 2 workers.  Max 87 parts (seg0).
+        ->  Hash  (cost=442.63..442.63 rows=150000 width=12) (actual time=586.317..586.317 rows=150135 loops=1)
+              Buckets: 524288  Batches: 1  Memory Usage: 10548kB
+              ->  Dynamic Seq Scan on orders o  (cost=0.00..442.63 rows=150000 width=12) (actual time=0.691..471.666 rows=150135 loops=1)
+                    Number of partitions to scan: 87 (out of 87)
+                    Partitions scanned:  Avg 87.0 x 2 workers.  Max 87 parts (seg0).
+Optimizer: GPORCA
+Planning Time: 144.098 ms
+  (slice0)    Executor memory: 51K bytes.
+  (slice1)    Executor memory: 11601K bytes avg x 2 workers, 11601K bytes max (seg1).  Work_mem: 10548K bytes max.
+  (slice2)    Executor memory: 796K bytes avg x 2 workers, 796K bytes max (seg1).
+Memory used:  128000kB
+Execution Time: 9210.230 ms
+```
+   
 ### Query 3: Retrieve Supplier and Part Information for Each Supplier-Part Relationship ###   
 ```
 explain (analyze) 
