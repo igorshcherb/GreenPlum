@@ -15,5 +15,5 @@
 * [Итоговый скрипт DataVault](dv_script.md)
 * [Замеры времени выполнения запросов](dv_timing.md)
    
-###[Выводы]###(conclusions.md)
+### [Выводы](conclusions.md) ###
    
