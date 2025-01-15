@@ -125,7 +125,39 @@ select c.c_custkey,
 from customer c 
      join orders o on o.o_custkey = c.c_custkey
      join lineitem l on l.l_orderkey = o.o_orderkey      
-```     
+```
+```
+Hash Join  (cost=0.00..2487.12 rows=1199410 width=90) (actual time=711.298..10375.746 rows=1199969 loops=1)
+  Hash Cond: (o.o_custkey = c.c_custkey)
+  Extra Text: Hash chain length 1.1 avg, 4 max, using 26786 of 131072 buckets.
+  ->  Gather Motion 2:1  (slice1; segments: 2)  (cost=0.00..1389.27 rows=1199410 width=29) (actual time=0.010..9177.500 rows=1199969 loops=1)
+        ->  Hash Join  (cost=0.00..1233.10 rows=599705 width=29) (actual time=619.369..3706.730 rows=600656 loops=1)
+              Hash Cond: (l.l_orderkey = o.o_orderkey)
+              Extra Text: (seg1)   Hash chain length 1.3 avg, 6 max, using 114262 of 262144 buckets.
+              ->  Redistribute Motion 2:2  (slice2; segments: 2)  (cost=0.00..543.70 rows=599985 width=21) (actual time=0.016..1920.469 rows=600656 loops=1)
+                    Hash Key: l.l_orderkey
+                    ->  Dynamic Seq Scan on lineitem l  (cost=0.00..480.83 rows=599985 width=21) (actual time=2.122..455.360 rows=600209 loops=1)
+                          Number of partitions to scan: 87 (out of 87)
+                          Partitions scanned:  Avg 87.0 x 2 workers.  Max 87 parts (seg0).
+              ->  Hash  (cost=442.63..442.63 rows=150000 width=16) (actual time=619.095..619.096 rows=150135 loops=1)
+                    Buckets: 262144  Batches: 1  Memory Usage: 9086kB
+                    ->  Dynamic Seq Scan on orders o  (cost=0.00..442.63 rows=150000 width=16) (actual time=0.240..351.223 rows=150135 loops=1)
+                          Number of partitions to scan: 87 (out of 87)
+                          Partitions scanned:  Avg 87.0 x 2 workers.  Max 87 parts (seg0).
+  ->  Hash  (cost=443.13..443.13 rows=30000 width=65) (actual time=710.950..710.951 rows=30000 loops=1)
+        Buckets: 131072  Batches: 1  Memory Usage: 3870kB
+        ->  Gather Motion 2:1  (slice3; segments: 2)  (cost=0.00..443.13 rows=30000 width=65) (actual time=7.261..703.946 rows=30000 loops=1)
+              ->  Seq Scan on customer c  (cost=0.00..432.56 rows=15000 width=65) (actual time=0.669..4.565 rows=15031 loops=1)
+Optimizer: GPORCA
+Planning Time: 26.365 ms
+  (slice0)    Executor memory: 4082K bytes.  Work_mem: 3870K bytes max.
+  (slice1)    Executor memory: 9669K bytes avg x 2 workers, 9669K bytes max (seg0).  Work_mem: 9086K bytes max.
+  (slice2)    Executor memory: 796K bytes avg x 2 workers, 796K bytes max (seg1).
+  (slice3)    Executor memory: 455K bytes avg x 2 workers, 458K bytes max (seg0).
+Memory used:  128000kB
+Execution Time: 10433.591 ms
+```
+   
 ### Query 5: Retrieve All Parts Supplied by a Specific Supplier with Supplier Details ###   
 ```
 explain (analyze)
