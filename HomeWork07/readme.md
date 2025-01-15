@@ -8,3 +8,6 @@
 
 * [Графическое изображение схемы](snowflake.jpg)
 * [Описание схемы](snowflake_desc.md)
+* [Замеры времени выполнения запросов](snowflake_timing.md)
+
+Архитектура Data Vault
