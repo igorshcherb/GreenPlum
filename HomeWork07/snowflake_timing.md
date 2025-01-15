@@ -81,7 +81,35 @@ select s.s_suppkey,
 from partsupp ps
      join supplier s on s.s_suppkey = ps.ps_suppkey
      join part p on p.p_partkey = ps.ps_partkey
-```      
+```
+```
+Gather Motion 2:1  (slice1; segments: 2)  (cost=0.00..1459.19 rows=159590 width=93) (actual time=199.285..1345.911 rows=160000 loops=1)
+  ->  Hash Join  (cost=0.00..1392.56 rows=79795 width=93) (actual time=198.352..330.267 rows=80252 loops=1)
+        Hash Cond: (ps.ps_suppkey = s.s_suppkey)
+        Extra Text: (seg1)   Hash chain length 1.0 avg, 2 max, using 1988 of 131072 buckets.
+        ->  Hash Join  (cost=0.00..913.85 rows=79795 width=41) (actual time=186.630..285.204 rows=80252 loops=1)
+              Hash Cond: (p.p_partkey = ps.ps_partkey)
+              Extra Text: (seg1)   Hash chain length 4.2 avg, 12 max, using 19248 of 262144 buckets.
+              ->  Seq Scan on part p  (cost=0.00..432.76 rows=20000 width=37) (actual time=2.884..9.469 rows=20063 loops=1)
+              ->  Hash  (cost=441.81..441.81 rows=80000 width=8) (actual time=182.802..182.803 rows=80252 loops=1)
+                    Buckets: 262144  Batches: 1  Memory Usage: 5183kB
+                    ->  Redistribute Motion 2:2  (slice2; segments: 2)  (cost=0.00..441.81 rows=80000 width=8) (actual time=0.020..173.467 rows=80252 loops=1)
+                          Hash Key: ps.ps_partkey
+                          ->  Seq Scan on partsupp ps  (cost=0.00..438.61 rows=80000 width=8) (actual time=2.184..10.155 rows=80192 loops=1)
+        ->  Hash  (cost=434.13..434.13 rows=2000 width=56) (actual time=11.205..11.205 rows=2000 loops=1)
+              Buckets: 131072  Batches: 1  Memory Usage: 1197kB
+              ->  Broadcast Motion 2:2  (slice3; segments: 2)  (cost=0.00..434.13 rows=2000 width=56) (actual time=9.360..10.533 rows=2000 loops=1)
+                    ->  Seq Scan on supplier s  (cost=0.00..431.10 rows=1000 width=56) (actual time=2.363..2.624 rows=1002 loops=1)
+Optimizer: GPORCA
+Planning Time: 11.791 ms
+  (slice0)    Executor memory: 66K bytes.
+  (slice1)    Executor memory: 6691K bytes avg x 2 workers, 6691K bytes max (seg0).  Work_mem: 5183K bytes max.
+  (slice2)    Executor memory: 263K bytes avg x 2 workers, 263K bytes max (seg0).
+  (slice3)    Executor memory: 353K bytes avg x 2 workers, 353K bytes max (seg0).
+Memory used:  128000kB
+Execution Time: 1361.969 ms
+```
+   
 ### Query 4: Retrieve Comprehensive Customer Order and Line Item Details ###   
 ```
 explain (analyze)
