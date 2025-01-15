@@ -10,4 +10,10 @@
 * [Описание схемы](snowflake_desc.md)
 * [Замеры времени выполнения запросов](snowflake_timing.md)
 
-Архитектура Data Vault
+### Архитектура DataVault ###
+* [Исправление ошибки в скрипте](dv_bugfix.md)
+* [Итоговый скрипт DataVault](dv_script.md)
+* [Замеры времени выполнения запросов](dv_timing.md)
+   
+###[Выводы](conclusions.md)###
+   
