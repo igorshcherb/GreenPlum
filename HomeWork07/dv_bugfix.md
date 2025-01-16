@@ -29,8 +29,8 @@
 -- truncate Satellite_LineItem;
     INSERT INTO Satellite_LineItem (LineItem_HashKey, Quantity, Price, Discount, LoadDate, RecordSource)
     SELECT 
-        -- MD5(CAST(l_linenumber AS TEXT)) AS LineItem_HashKey,
         md5(row(L_ORDERKEY, L_LINENUMBER) ::text) AS LineItem_HashKey,
+        -- MD5(CAST(l_linenumber AS TEXT)) AS LineItem_HashKey,
         l_quantity AS Quantity,
         l_extendedprice AS Price,
         l_discount AS Discount,
