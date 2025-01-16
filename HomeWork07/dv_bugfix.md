@@ -1,6 +1,6 @@
 ## Исправление ошибки в скрипте ##
 
-2 запроса из 5 выдавали 0 строк, потому что неправильно было заполнено поле LineItem_HashKey - в 3-х местах:   
+2 запроса из 5 выдавали 0 строк, потому что неправильно было заполнено поле LineItem_HashKey. Ошибка исправлена в 3-х местах:   
 ```
 -- truncate Hub_LineItem;
     insert into Hub_LineItem (LineItem_HashKey, LineItemID, LoadDate, RecordSource)
