@@ -83,31 +83,31 @@ from partsupp ps
      join part p on p.p_partkey = ps.ps_partkey
 ```
 ```
-Gather Motion 2:1  (slice1; segments: 2)  (cost=0.00..1459.19 rows=159590 width=93) (actual time=165.112..2193.853 rows=160000 loops=1)
-  ->  Hash Join  (cost=0.00..1392.56 rows=79795 width=93) (actual time=168.643..206.099 rows=80252 loops=1)
+Gather Motion 2:1  (slice1; segments: 2)  (cost=0.00..1459.19 rows=159590 width=93) (actual time=165.197..3276.259 rows=160000 loops=1)
+  ->  Hash Join  (cost=0.00..1392.56 rows=79795 width=93) (actual time=163.418..254.331 rows=80252 loops=1)
         Hash Cond: (ps.ps_suppkey = s.s_suppkey)
         Extra Text: (seg1)   Hash chain length 1.0 avg, 2 max, using 1988 of 131072 buckets.
-        ->  Hash Join  (cost=0.00..913.85 rows=79795 width=41) (actual time=143.745..162.648 rows=80252 loops=1)
+        ->  Hash Join  (cost=0.00..913.85 rows=79795 width=41) (actual time=144.248..163.859 rows=80252 loops=1)
               Hash Cond: (p.p_partkey = ps.ps_partkey)
               Extra Text: (seg1)   Hash chain length 4.2 avg, 12 max, using 19248 of 262144 buckets.
-              ->  Seq Scan on part p  (cost=0.00..432.76 rows=20000 width=37) (actual time=10.250..14.623 rows=20063 loops=1)
-              ->  Hash  (cost=441.81..441.81 rows=80000 width=8) (actual time=132.926..132.927 rows=80252 loops=1)
+              ->  Seq Scan on part p  (cost=0.00..432.76 rows=20000 width=37) (actual time=0.196..3.730 rows=20063 loops=1)
+              ->  Hash  (cost=441.81..441.81 rows=80000 width=8) (actual time=142.856..142.857 rows=80252 loops=1)
                     Buckets: 262144  Batches: 1  Memory Usage: 5183kB
-                    ->  Redistribute Motion 2:2  (slice2; segments: 2)  (cost=0.00..441.81 rows=80000 width=8) (actual time=0.011..127.216 rows=80252 loops=1)
+                    ->  Redistribute Motion 2:2  (slice2; segments: 2)  (cost=0.00..441.81 rows=80000 width=8) (actual time=0.014..115.415 rows=80252 loops=1)
                           Hash Key: ps.ps_partkey
-                          ->  Seq Scan on partsupp ps  (cost=0.00..438.61 rows=80000 width=8) (actual time=7.987..14.497 rows=80192 loops=1)
-        ->  Hash  (cost=434.13..434.13 rows=2000 width=56) (actual time=24.819..24.819 rows=2000 loops=1)
+                          ->  Seq Scan on partsupp ps  (cost=0.00..438.61 rows=80000 width=8) (actual time=0.289..6.233 rows=80192 loops=1)
+        ->  Hash  (cost=434.13..434.13 rows=2000 width=56) (actual time=19.564..19.564 rows=2000 loops=1)
               Buckets: 131072  Batches: 1  Memory Usage: 1197kB
-              ->  Broadcast Motion 2:2  (slice3; segments: 2)  (cost=0.00..434.13 rows=2000 width=56) (actual time=22.945..24.536 rows=2000 loops=1)
-                    ->  Seq Scan on supplier s  (cost=0.00..431.10 rows=1000 width=56) (actual time=8.582..8.686 rows=1002 loops=1)
+              ->  Broadcast Motion 2:2  (slice3; segments: 2)  (cost=0.00..434.13 rows=2000 width=56) (actual time=14.910..19.164 rows=2000 loops=1)
+                    ->  Seq Scan on supplier s  (cost=0.00..431.10 rows=1000 width=56) (actual time=0.244..0.317 rows=1002 loops=1)
 Optimizer: GPORCA
-Planning Time: 5.856 ms
+Planning Time: 8.425 ms
   (slice0)    Executor memory: 66K bytes.
   (slice1)    Executor memory: 6691K bytes avg x 2 workers, 6691K bytes max (seg0).  Work_mem: 5183K bytes max.
   (slice2)    Executor memory: 263K bytes avg x 2 workers, 263K bytes max (seg0).
   (slice3)    Executor memory: 353K bytes avg x 2 workers, 353K bytes max (seg0).
 Memory used:  128000kB
-Execution Time: 2213.657 ms
+Execution Time: 3311.731 ms
 ```
    
 ### Query 4: Retrieve Comprehensive Customer Order and Line Item Details ###   
