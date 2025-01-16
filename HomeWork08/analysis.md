@@ -26,4 +26,33 @@ limit 10;
 |22483|Customer#000022483|1128032|1997-09-19|9.00|0.00058|
 |21565|Customer#000021565|600645|1998-03-18|46.00|0.00296|
 |20212|Customer#000020212|1145349|1997-06-11|24.00|0.00154|
+   
+**Скидки по заказу, минимальная и максимальная скидка по поставщику**
+```
+select c.c_custkey, 
+       c.c_name, 
+       o.o_orderkey,
+       o.o_orderdate,
+       l.l_discount,
+       min(l.l_discount) over (partition by l.l_suppkey) min_discount,
+       max(l.l_discount) over (partition by l.l_suppkey) max_discount
+from customer c 
+     join orders o on o.o_custkey = c.c_custkey
+     join lineitem l on l.l_orderkey = o.o_orderkey
+limit 10;
+```
+   
+|c_custkey|c_name|o_orderkey|o_orderdate|l_discount|min_discount|max_discount|
+|---------|------|----------|-----------|----------|------------|------------|
+|29692|Customer#000029692|374535|1994-06-03|0.02|0.00|0.10|
+|22732|Customer#000022732|78530|1996-09-04|0.08|0.00|0.10|
+|3742|Customer#000003742|490369|1994-12-14|0.01|0.00|0.10|
+|12871|Customer#000012871|786148|1995-09-12|0.07|0.00|0.10|
+|23755|Customer#000023755|927683|1997-04-08|0.00|0.00|0.10|
+|24629|Customer#000024629|686375|1992-05-19|0.06|0.00|0.10|
+|17080|Customer#000017080|646629|1992-11-04|0.09|0.00|0.10|
+|17035|Customer#000017035|838759|1992-12-10|0.06|0.00|0.10|
+|23251|Customer#000023251|119427|1992-07-22|0.00|0.00|0.10|
+|5089|Customer#000005089|547970|1998-03-11|0.07|0.00|0.10|
 
+   
