@@ -53,15 +53,16 @@ Memory used:  128000kB
 Execution Time: 20566.323 ms
 ```
 ```
-explain analyze select * from q5;
+explain analyze select * from q5 where s_suppkey = 1002;
 ```
 ```
-Gather Motion 2:1  (slice1; segments: 2)  (cost=0.00..517.06 rows=160000 width=93) (actual time=3.075..2553.160 rows=160000 loops=1)
-  ->  Seq Scan on q5  (cost=0.00..436.41 rows=80000 width=93) (actual time=0.031..9.850 rows=80105 loops=1)
+Gather Motion 2:1  (slice1; segments: 2)  (cost=0.00..6.07 rows=80 width=93) (actual time=3.140..5.260 rows=80 loops=1)
+  ->  Index Scan using q5_suppkey on q5  (cost=0.00..6.03 rows=40 width=93) (actual time=0.191..0.264 rows=49 loops=1)
+        Index Cond: (s_suppkey = 1002)
 Optimizer: GPORCA
-Planning Time: 2.248 ms
-  (slice0)    Executor memory: 24K bytes.
-  (slice1)    Executor memory: 55K bytes avg x 2 workers, 55K bytes max (seg0).
+Planning Time: 2.716 ms
+  (slice0)    Executor memory: 22K bytes.
+  (slice1)    Executor memory: 43K bytes avg x 2 workers, 43K bytes max (seg0).
 Memory used:  128000kB
-Execution Time: 2566.582 ms
+Execution Time: 12.488 ms
 ```
