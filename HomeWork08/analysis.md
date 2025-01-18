@@ -58,11 +58,25 @@ limit 10;
 **Суммы заказов по месяцам**
 
 ```   
-select date_part('month', o_orderdate) mnth,
+select to_char(o_orderdate, 'yyyy-mm') mnth,
        to_char(sum(o_totalprice), '999999999999D00') tot_sum
 from   orders
-group by date_part('month', o_orderdate)
+group by to_char(o_orderdate, 'yyyy-mm')
 order by 1
-limit 10;   
+limit 10;  
 ```
+
+|mnth|tot_sum|
+|----|-------|
+|1992-01|    560265768,45|
+|1992-02|    525668085,35|
+|1992-03|    556487879,10|
+|1992-04|    538676572,66|
+|1992-05|    534093869,05|
+|1992-06|    543755610,48|
+|1992-07|    560873309,98|
+|1992-08|    557718823,36|
+|1992-09|    526647815,62|
+|1992-10|    568315847,02|
+
 
