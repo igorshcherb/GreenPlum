@@ -79,4 +79,24 @@ limit 10;
 |1992-09|    526647815,62|
 |1992-10|    568315847,02|
 
+**Суммы заказов с указанием минимальной и максимальной суммы заказа за месяц**
 
+```   
+with lst as (
+  select o_custkey custkey, 
+         to_char(o_orderdate, 'yyyy-mm') mnth,
+         o_totalprice totalprice
+  from   orders
+  )
+select custkey,
+       mnth,
+       totalprice,
+       first_value(totalprice) over(partition by (custkey, mnth) order by totalprice 
+         rows between unbounded preceding and unbounded following) min_totalprice,
+       last_value(totalprice) over(partition by (custkey, mnth) order by totalprice 
+         rows between unbounded preceding and unbounded following) max_totalprice
+from   lst
+order by 1, 2, 3;
+```
+
+   
