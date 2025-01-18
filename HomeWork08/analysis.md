@@ -55,4 +55,14 @@ limit 10;
 |23251|Customer#000023251|119427|1992-07-22|0.00|0.00|0.10|
 |5089|Customer#000005089|547970|1998-03-11|0.07|0.00|0.10|
 
-   
+**Суммы заказов по месяцам**
+
+```   
+select date_part('month', o_orderdate) mnth,
+       to_char(sum(o_totalprice), '999999999999D00') tot_sum
+from   orders
+group by date_part('month', o_orderdate)
+order by 1
+limit 10;   
+```
+
