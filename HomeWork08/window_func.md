@@ -51,3 +51,16 @@ limit 10
 |3|1993-10-14|2|49.00|1|
 |3|1993-10-14|1|45.00|2|
 |3|1993-10-14|5|28.00|3|
+
+**Нумерация заказов поставщика в порядке сумм**
+```
+select o.o_custkey,
+       o.o_orderkey,
+       o.o_orderdate,       
+       o.o_totalprice,
+       row_number() over (partition by o.o_custkey order by o.o_totalprice desc) 
+from orders o
+order by o.o_custkey, o.o_totalprice desc
+limit 10
+```
+
