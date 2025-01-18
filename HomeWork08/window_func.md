@@ -32,7 +32,7 @@ select o.o_orderkey,
        o.o_orderdate,
        l.l_linenumber,
        l.l_quantity,
-       rank() OVER (PARTITION BY o.o_orderkey ORDER BY l.l_quantity DESC) rank_quantity
+       rank() over (partition by o.o_orderkey order by l.l_quantity desc) rank_quantity
 from orders o
      join lineitem l on l.l_orderkey = o.o_orderkey
 order by o.o_orderkey, rank_quantity
