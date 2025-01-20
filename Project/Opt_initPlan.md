@@ -18,6 +18,9 @@ Gather
    
 **План этого запроса в Arenadata DB 7.2:**
 ```
+set optimizer=on;
+```
+```
 Gather Motion 4:1  (slice1; segments: 4)
   ->  Hash Join
         Hash Cond: (flight_id = (65405))
@@ -25,6 +28,17 @@ Gather Motion 4:1  (slice1; segments: 4)
         ->  Hash
               ->  Result
 Optimizer: GPORCA
+```
+```
+set optimizer=off;
+```
+```
+Gather Motion 4:1  (slice1; segments: 4)
+  InitPlan 1 (returns $0)  (slice2)
+    ->  Result
+  ->  Seq Scan on ticket_flights
+        Filter: (flight_id = $0)
+Optimizer: Postgres-based planner
 ```
    
 **Вывод: в Arenadata степень распараллеливания выше - по количеству сегментов кластера.**
