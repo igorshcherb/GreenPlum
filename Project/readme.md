@@ -23,6 +23,7 @@
 
 **Загрузка данных в БД PostgreSQL**   
 * [Источники БД "Авиаперевозки"](air_db.md)
+* [ER-диаграмма "Авиаперевозки"](Air_Flow_ER.jpg)
 * [Схема БД "Авиаперевозки"](air_db_schema.jpg) 
 * [Создание таблиц PostgreSQL](create_Postgres_tables.sql)   
    
