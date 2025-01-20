@@ -27,9 +27,9 @@
 * [Схема БД "Авиаперевозки"](air_db_schema.jpg) 
 * [Создание таблиц PostgreSQL](create_Postgres_tables.sql)   
    
-**Загрузка данных в ADB**   
+**Загрузка данных в MPP-кластеры**   
 * [Создание внешних таблиц](create_ext_tables.sql)   
-* [Создание и заполнение таблиц ADB](create_adb_tables.sql)   
+* [Создание и заполнение таблиц MPP-кластеров](create_adb_tables.sql)   
    
 [**Запуск Single-Node кластера Greenplum 6.23 (песочница)**](create_gp6.md)   
    
