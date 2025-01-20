@@ -16,7 +16,7 @@ Gather
 ```
 **Для выполнения запроса в PostgreSQL 17 используются параллельные процессы (workers).**
    
-**План этого запроса в Arenadata DB 7.2**
+**План этого запроса в Arenadata DB 7.2:**
 ```
 Gather Motion 4:1  (slice1; segments: 4)
   ->  Hash Join
