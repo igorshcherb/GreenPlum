@@ -43,3 +43,6 @@
 * [Создание Single-Node кластера Arenadata DB 6.27 (из исходников)](create_arenadata_6.md)
 * [Установка PXF для кластера Arenadata](Install_Arenadata_PXF.md)
    
+**Разбор методов оптимизации некоторых сложных запросов**
+* [Запросы, в планах выполнения которых есть initPlans, могут использовать параллельные процессы (workers) для выполнения initPlan](Opt_initPlan.md)
+
