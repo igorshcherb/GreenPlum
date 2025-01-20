@@ -14,7 +14,7 @@ Gather
   ->  Parallel Seq Scan on ticket_flights
         Filter: (flight_id = (InitPlan 1).col1)
 ```
-**Для выполнения запроса используются параллельные процессы (workers).**
+**Для выполнения запроса в PostgreSQL 17 используются параллельные процессы (workers).**
    
 **План этого запроса в Arenadata DB 7.2**
 ```
