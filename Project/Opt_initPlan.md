@@ -1,6 +1,6 @@
 ## В PostgreSQL 17 запросы, в планах выполнения которых есть initPlans, могут использовать параллельные процессы (workers) для выполнения initPlan ##
    
-**Запрос, :**
+**Запрос:**
 ```
 explain (costs off) select flight_id from ticket_flights where flight_id = (select 65405);
 ```
