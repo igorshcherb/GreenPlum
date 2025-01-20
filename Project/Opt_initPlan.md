@@ -18,7 +18,7 @@ Gather
    
 **План этого запроса в Arenadata DB 7.2:**
 ```
-set optimizer=on;
+set optimizer = on;
 ```
 ```
 Gather Motion 4:1  (slice1; segments: 4)
@@ -30,7 +30,7 @@ Gather Motion 4:1  (slice1; segments: 4)
 Optimizer: GPORCA
 ```
 ```
-set optimizer=off;
+set optimizer = off;
 ```
 ```
 Gather Motion 4:1  (slice1; segments: 4)
