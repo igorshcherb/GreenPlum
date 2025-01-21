@@ -13,6 +13,7 @@ Index Only Scan using bookings_total_amount_idx on bookings
 ```
 
 **План выполнения запроса в Arenadata DB 7.2**   
+   
 **Без индекса:**   
 ```
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..470.73 rows=140272 width=6) (actual time=18.210..7060.269 rows=141535 loops=1)
