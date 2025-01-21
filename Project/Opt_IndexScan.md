@@ -27,7 +27,8 @@ Planning Time: 7.818 ms
 Memory used:  128000kB
 Execution Time: 7074.754 ms
 ```
-**С индексом:**
+**С индексом:**   
+   
 **С оптимизатором GPORCA:**
 ```
 create index bookings_total_amount_idx on bookings using btree(total_amount);
