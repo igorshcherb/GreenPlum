@@ -28,9 +28,26 @@ Memory used:  128000kB
 Execution Time: 7074.754 ms
 ```
 **С индексом:**
+**С оптимизатором GPORCA:**
 ```
 create index bookings_total_amount_idx on bookings using btree(total_amount);
 analyze bookings;
+set optimizer = on;
+```
+```
+Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..470.79 rows=142822 width=6) (actual time=1.161..1604.234 rows=141535 loops=1)
+  ->  Seq Scan on bookings  (cost=0.00..467.92 rows=35706 width=6) (actual time=0.124..799.493 rows=35523 loops=1)
+        Filter: (total_amount > '200000'::numeric)
+        Rows Removed by Filter: 491466
+Optimizer: GPORCA
+Planning Time: 2.242 ms
+  (slice0)    Executor memory: 30K bytes.
+  (slice1)    Executor memory: 191K bytes avg x 4 workers, 191K bytes max (seg0).
+Memory used:  128000kB
+Execution Time: 1615.481 ms
+```
+**С оптимизатором Postgres:**
+```
 set optimizer = off;
 ```
 ```
@@ -47,6 +64,6 @@ Planning Time: 0.303 ms
 Memory used:  128000kB
 Execution Time: 449.957 ms
 ```
-
+   
 **Выводы:** сканирование индекса в 15 раз ускорило выполнение запроса в Arenadata DB 7.2.
    
