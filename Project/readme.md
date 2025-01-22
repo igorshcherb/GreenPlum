@@ -45,6 +45,7 @@
    
 **Планы выполнения запросов**   
 * [Планы запросов в PostgreSQL](Postgres_queries.sql)
+* [Планы запросов в Arenadata DB](Arenadata_queries.sql)
    
 **Разбор методов оптимизации некоторых сложных запросов**
 * [В PostgreSQL 17 запросы, в планах выполнения которых есть initPlan, могут использовать параллельные процессы (workers) для выполнения initPlan](Opt_initPlan.md)
