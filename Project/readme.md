@@ -43,6 +43,9 @@
 * [Создание Single-Node кластера Arenadata DB 6.27 (из исходников)](create_arenadata_6.md)
 * [Установка PXF для кластера Arenadata](Install_Arenadata_PXF.md)
    
+**Планы выполнения запросов**   
+* [Планы запросов в PostgreSQL](Postgres_queries.sql)
+   
 **Разбор методов оптимизации некоторых сложных запросов**
 * [В PostgreSQL 17 запросы, в планах выполнения которых есть initPlan, могут использовать параллельные процессы (workers) для выполнения initPlan](Opt_initPlan.md)
 * [Index Scan](Opt_IndexScan.md)
