@@ -1,6 +1,6 @@
 set schema 'bookings';
 
--- Последовательное сканирование
+-- 01
 explain analyze select * from flights;
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..536.21 rows=214867 width=123) (actual time=24.844..4092.255 rows=214867 loops=1)
@@ -12,7 +12,7 @@ Planning Time: 4.433 ms
 Memory used:  128000kB
 Execution Time: 4102.776 ms
 
--- Сканирование индекса
+-- 02
 create unique index bookings_pkey on bookings.bookings using btree (book_ref);
 
 explain analyze select * from bookings where book_ref = 'CDE08B';
@@ -30,7 +30,7 @@ Planning Time: 3.607 ms
 Memory used:  128000kB
 Execution Time: 13.605 ms
 
--- Поиск по диапазону
+-- 03
 explain analyze select * from bookings where book_ref > '000900' and book_ref < '000939';
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..513.85 rows=337778 width=36) (actual time=45.091..216.285 rows=5 loops=1)
@@ -44,7 +44,7 @@ Planning Time: 2.240 ms
 Memory used:  128000kB
 Execution Time: 222.427 ms
 
--- Поиск отдельных значений
+-- 04
 explain analyze select * from bookings where book_ref in ('000906','000909','000917','000930','000938');
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..387.97 rows=6 width=36) (actual time=3.123..11.171 rows=5 loops=1)
@@ -60,7 +60,7 @@ Planning Time: 2.443 ms
 Memory used:  128000kB
 Execution Time: 13.325 ms
 
--- Сканирование по битовой карте
+-- 05
 create index on bookings(book_date);
 create index on bookings(total_amount);
 
@@ -79,7 +79,7 @@ Planning Time: 5.408 ms
 Memory used:  128000kB
 Execution Time: 46.811 ms
 
--- Объединение битовых карт
+-- 06
 explain analyze select * from bookings where total_amount < 5000 or total_amount > 500000;
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..455.63 rows=15149 width=36) (actual time=9.651..126.716 rows=9636 loops=1)
@@ -98,7 +98,7 @@ Planning Time: 4.531 ms
 Memory used:  128000kB
 Execution Time: 131.108 ms
 
--- Объединение битовых карт по разным индексам
+-- 07
 explain analyze select * from bookings where total_amount < 5000 OR book_date::timestamp with time zone = bookings.now() - INTERVAL '1 day';
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..601.04 rows=846876 width=36) (actual time=191.529..794.464 rows=1474 loops=1)
@@ -112,7 +112,7 @@ Planning Time: 3.724 ms
 Memory used:  128000kB
 Execution Time: 795.982 ms
 
--- Объединение битовых карт с перепроверкой (Recheck Cond)
+-- 08
 explain analyze select count(*) from bookings where total_amount < 5000 and book_date::timestamp with time zone > '2017-07-15 18:00:00+03'::timestamp;
 
 Finalize Aggregate  (cost=0.00..395.49 rows=1 width=8) (actual time=10.660..10.662 rows=1 loops=1)
@@ -132,7 +132,7 @@ Planning Time: 5.256 ms
 Memory used:  128000kB
 Execution Time: 14.283 ms
 
--- Сканирование только индекса
+-- 09
 explain analyze select total_amount from bookings where total_amount > 200000;
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..470.79 rows=142822 width=6) (actual time=0.014..938.128 rows=141535 loops=1)
@@ -146,7 +146,7 @@ Planning Time: 2.854 ms
 Memory used:  128000kB
 Execution Time: 949.431 ms
 
--- Сканирование многоколоночного индекса
+-- 10
 explain analyze select * from ticket_flights where ticket_no = '0005432000284' and flight_id = 187662;
 
 Gather Motion 1:1  (slice1; segments: 1)  (cost=0.00..640.59 rows=1 width=32) (actual time=790.107..790.109 rows=1 loops=1)
@@ -160,7 +160,7 @@ Planning Time: 2.643 ms
 Memory used:  128000kB
 Execution Time: 792.431 ms
 
--- Параллельное последовательное сканирование
+-- 11
 explain analyze select count(*) from bookings;
 
 Finalize Aggregate  (cost=0.00..451.14 rows=1 width=8) (actual time=346.537..346.540 rows=1 loops=1)
@@ -174,7 +174,7 @@ Planning Time: 1.639 ms
 Memory used:  128000kB
 Execution Time: 367.598 ms
 
--- Параллельное сканирование индекса
+-- 12
 explain analyze select sum(total_amount) from bookings where book_ref < '400000';
 
 Finalize Aggregate  (cost=0.00..472.77 rows=1 width=8) (actual time=178.899..178.900 rows=1 loops=1)
@@ -190,7 +190,7 @@ Planning Time: 4.134 ms
 Memory used:  128000kB
 Execution Time: 181.736 ms
 
--- Параллельное сканирование только индекса
+-- 13
 explain analyze select count(book_ref) from bookings where book_ref <= '400000';
 
 Finalize Aggregate  (cost=0.00..470.44 rows=1 width=8) (actual time=119.129..119.133 rows=1 loops=1)
@@ -206,7 +206,7 @@ Planning Time: 2.628 ms
 Memory used:  128000kB
 Execution Time: 245.347 ms
 
--- Параллельное сканирование по битовой карте
+-- 14
 explain analyze select count(*) from bookings where total_amount < 20000 and book_date::timestamp with time zone > '2017-07-15 18:00:00+03'::timestamp;
 
 Finalize Aggregate  (cost=0.00..487.06 rows=1 width=8) (actual time=406.312..406.313 rows=1 loops=1)
@@ -222,7 +222,7 @@ Planning Time: 3.940 ms
 Memory used:  128000kB
 Execution Time: 409.853 ms
 
--- Сортировка в оконных функциях
+-- 15
 explain analyze select *, sum(total_amount) over (order by book_date) from bookings;
 
 WindowAgg  (cost=0.00..2863.62 rows=2111110 width=32) (actual time=10881.950..39250.146 rows=2111110 loops=1)
@@ -241,7 +241,7 @@ Planning Time: 2.632 ms
 Memory used:  128000kB
 Execution Time: 39478.280 ms
 
--- Оконные функции, требующие разного порядка строк
+-- 16
 explain analyze select *, sum(total_amount) over (order by book_date), count(*) over (order by book_ref) from bookings;
 
 WindowAgg  (cost=0.00..10978.68 rows=2111110 width=40) (actual time=46201.224..50579.485 rows=2111110 loops=1)
@@ -267,7 +267,7 @@ Memory used:  128000kB
 Memory wanted:  1053140kB
 Execution Time: 50722.037 ms
 
--- Применение группировки
+-- 17
 explain analyze select fare_conditions from seats group by fare_conditions;
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..431.05 rows=3 width=8) (actual time=79.250..83.443 rows=3 loops=1)
@@ -293,7 +293,7 @@ Memory used:  128000kB
 Memory wanted:  448kB
 Execution Time: 97.823 ms
 
--- Группировка сортировкой
+-- 18
 create unique index ticket_flights_pkey on bookings.ticket_flights using btree (ticket_no, flight_id);
 analyze bookings.ticket_flights;
 explain analyze select ticket_no, count(ticket_no) from ticket_flights group by ticket_no;
@@ -316,7 +316,7 @@ Memory used:  128000kB
 Memory wanted:  74044kB
 Execution Time: 109574.404 ms
 
--- Комбинированная группировка
+-- 19
 explain analyze select fare_conditions, ticket_no, amount, count(*) from ticket_flights
 group by grouping sets (fare_conditions, ticket_no, amount);
 
@@ -369,7 +369,7 @@ Memory used:  128000kB
 Memory wanted:  775088kB
 Execution Time: 118067.772 ms
 
--- Группировка в параллельных планах
+-- 20
 explain analyze select flight_id, count(*) from ticket_flights group by flight_id;
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..779.88 rows=81020 width=12) (actual time=9419.145..10020.897 rows=150588 loops=1)
@@ -393,7 +393,7 @@ Memory used:  128000kB
 Memory wanted:  37196kB
 Execution Time: 10039.379 ms
 
--- Соединение вложенным циклом
+-- 21
 explain analyze select * from tickets t join ticket_flights tf on tf.ticket_no = t.ticket_no where t.ticket_no in ('0005432312163','0005432312164');
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..897.60 rows=12 width=136) (actual time=615.611..1095.372 rows=8 loops=1)
@@ -420,7 +420,7 @@ Planning Time: 8.749 ms
 Memory used:  128000kB
 Execution Time: 1097.162 ms
 
--- Вложенный цикл для левого соединения
+-- 22
 explain analyze select * from aircrafts a left join seats s on (a.aircraft_code = s.aircraft_code) where a.model like 'аэробус%';
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..862.18 rows=2 width=35) (actual time=93.074..93.076 rows=0 loops=1)
@@ -443,7 +443,7 @@ Planning Time: 19.203 ms
 Memory used:  128000kB
 Execution Time: 106.811 ms
 
--- Вложенный цикл для антисоединения
+-- 23
 explain analyze select * from aircrafts a where a.model like 'аэробус%' 
   and not exists (select * from seats s where s.aircraft_code = a.aircraft_code);
 
@@ -481,7 +481,7 @@ Memory used:  128000kB
 Memory wanted:  972kB
 Execution Time: 42.532 ms
 
--- Вложенный цикл для полусоединения
+-- 24
 explain analyze select * from aircrafts a where a.model like 'аэробус%'
   and exists (select * from seats s where s.aircraft_code = a.aircraft_code);
 
@@ -518,7 +518,7 @@ Memory used:  128000kB
 Memory wanted:  872kB
 Execution Time: 42.420 ms
 
--- Мемоизация - кеширование повторяющихся данных внутреннего набора
+-- 25
 explain analyze select * from flights f join aircrafts_data a on f.aircraft_code = a.aircraft_code where f.flight_no = 'PG0003';
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..868.32 rows=1 width=143) (actual time=9.164..13.586 rows=113 loops=1)
@@ -538,7 +538,7 @@ Planning Time: 5.011 ms
 Memory used:  128000kB
 Execution Time: 15.080 ms
 
--- Вложенный цикл в параллельных планах
+-- 26
 explain analyze select t.passenger_name from tickets t join ticket_flights tf on tf.ticket_no = t.ticket_no
   join flights f on f.flight_id = tf.flight_id where f.flight_id = 12345;
 
@@ -569,7 +569,7 @@ Planning Time: 8.594 ms
 Memory used:  128000kB
 Execution Time: 3368.559 ms
 
--- Функциональные зависимости предикатов (dependencies)
+-- 27
 explain analyze select * from flights where flight_no = 'PG0007' and departure_airport = 'VKO';
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..439.07 rows=25 width=123) (actual time=6.842..14.859 rows=396 loops=1)
@@ -586,7 +586,7 @@ Execution Time: 16.655 ms
 create statistics (dependencies) on flight_no, departure_airport from flights; -- не поддерживается
 analyze flights;
 
--- Наиболее частые комбинации значений (mcv)
+-- 28
 explain analyze select * from flights where departure_airport = 'LED' and aircraft_code = '321';
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..439.68 rows=1337 width=123) (actual time=0.338..98.332 rows=5148 loops=1)
@@ -605,7 +605,7 @@ analyze flights;
 
 
 
--- Уникальные комбинации
+-- 29
 explain analyze select distinct departure_airport, arrival_airport from flights;
 
 Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..449.91 rows=6084 width=8) (actual time=77.839..79.863 rows=618 loops=1)
@@ -634,7 +634,7 @@ analyze flights;
 
 
 
--- Статистика по выражению
+-- 30
 explain analyze select * from flights where extract(month from scheduled_departure at time zone 'Europe/Moscow') = 1; -- не поддерживается
 
 
@@ -651,14 +651,14 @@ select * from pg_statistic_ext_data;
 
 analyze flights;
 
--- Узел Materialize
+-- 31
 
 explain analyze select a1.city, a2.city from airports a1, airports a2 where a1.timezone = 'Europe/Moscow' -- не поддерживается
   and abs(a2.coordinates[1]) > 66.652; -- за полярным кругом
 
 
 
--- Материализация CTE
+-- 32
 explain analyze
   with q as materialized (select f.flight_id, a.aircraft_code from flights f join aircrafts a on a.aircraft_code = f.aircraft_code) 
   select * from q join seats s on s.aircraft_code = q.aircraft_code where s.seat_no = '1A';
@@ -692,7 +692,7 @@ Planning Time: 12.882 ms
 Memory used:  128000kB
 Execution Time: 2566.404 ms
 
--- Рекурсивные запросы
+-- 33
 explain analyze
 with recursive r(n, airport_code) as (
   select 1, a.airport_code
