@@ -53,3 +53,6 @@
 * [initPlan](Opt_initPlan.md)
 * [Index Scan](Opt_IndexScan.md)
 * [Nested Loop](Opt_NestedLoop.sql)
+   
+[**Выводы**](summary.md)   
+   
