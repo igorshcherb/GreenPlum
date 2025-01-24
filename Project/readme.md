@@ -52,3 +52,4 @@
 **Разбор планов выполнения некоторых запросов**
 * [initPlan](Opt_initPlan.md)
 * [Index Scan](Opt_IndexScan.md)
+* [Nested Loop](Opt_NestedLoop.sql)
