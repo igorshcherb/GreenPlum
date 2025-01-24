@@ -1,11 +1,11 @@
--- Последовательное сканирование
+-- 01. Последовательное сканирование
 explain analyze select * from flights;
 
 Seq Scan on flights  (cost=0.00..4772.67 rows=214867 width=63) (actual time=0.185..42.513 rows=214867 loops=1)
 Planning Time: 2.947 ms
 Execution Time: 45.491 ms
 
--- Сканирование индекса
+-- 02. Сканирование индекса
 explain analyze select * from bookings where book_ref = 'CDE08B';
 
 Index Scan using bookings_pkey on bookings  (cost=0.43..8.45 rows=1 width=21) (actual time=0.488..0.488 rows=1 loops=1)
@@ -13,7 +13,7 @@ Index Scan using bookings_pkey on bookings  (cost=0.43..8.45 rows=1 width=21) (a
 Planning Time: 8.805 ms
 Execution Time: 0.508 ms
 
--- Поиск по диапазону
+-- 03. Поиск по диапазону
 explain analyze select * from bookings where book_ref > '000900' and book_ref < '000939';
 
 Index Scan using bookings_pkey on bookings  (cost=0.43..8.45 rows=1 width=21) (actual time=0.129..0.130 rows=5 loops=1)
@@ -21,7 +21,7 @@ Index Scan using bookings_pkey on bookings  (cost=0.43..8.45 rows=1 width=21) (a
 Planning Time: 1.992 ms
 Execution Time: 0.139 ms
 
--- Поиск отдельных значений
+-- 04. Поиск отдельных значений
 explain analyze select * from bookings where book_ref in ('000906','000909','000917','000930','000938');
 
 Index Scan using bookings_pkey on bookings  (cost=0.43..26.24 rows=5 width=21) (actual time=0.021..0.021 rows=5 loops=1)
@@ -29,7 +29,7 @@ Index Scan using bookings_pkey on bookings  (cost=0.43..26.24 rows=5 width=21) (
 Planning Time: 0.133 ms
 Execution Time: 0.031 ms
 
--- Сканирование по битовой карте
+-- 05. Сканирование по битовой карте
 create index on bookings(book_date);
 create index on bookings(total_amount);
 
@@ -43,7 +43,7 @@ Bitmap Heap Scan on bookings  (cost=95.00..9929.12 rows=4977 width=21) (actual t
 Planning Time: 1.044 ms
 Execution Time: 10.130 ms
 
--- Объединение битовых карт
+-- 06. Объединение битовых карт
 explain analyze select * from bookings where total_amount < 5000 or total_amount > 500000;
 
 Bitmap Heap Scan on bookings  (cost=315.86..14750.55 rows=16350 width=21) (actual time=1.824..40.199 rows=9636 loops=1)
@@ -57,7 +57,7 @@ Bitmap Heap Scan on bookings  (cost=315.86..14750.55 rows=16350 width=21) (actua
 Planning Time: 0.380 ms
 Execution Time: 40.453 ms
 
--- Объединение битовых карт по разным индексам
+-- 07. Объединение битовых карт по разным индексам
 explain analyze select * from bookings where total_amount < 5000 OR book_date = bookings.now() - INTERVAL '1 day';
 
 Bitmap Heap Scan on bookings  (cost=100.72..9965.76 rows=4982 width=21) (actual time=0.240..1.263 rows=1474 loops=1)
@@ -71,7 +71,7 @@ Bitmap Heap Scan on bookings  (cost=100.72..9965.76 rows=4982 width=21) (actual 
 Planning Time: 0.302 ms
 Execution Time: 1.290 ms
 
--- Объединение битовых карт с перепроверкой (Recheck Cond)
+-- 08. Объединение битовых карт с перепроверкой (Recheck Cond)
 explain analyze select count(*) from bookings where total_amount < 5000 and book_date > '2017-07-15 18:00:00+03'::timestamp;
 
 Aggregate  (cost=4018.91..4018.92 rows=1 width=8) (actual time=7.178..7.179 rows=1 loops=1)
@@ -86,7 +86,7 @@ Aggregate  (cost=4018.91..4018.92 rows=1 width=8) (actual time=7.178..7.179 rows
 Planning Time: 0.170 ms
 Execution Time: 7.233 ms
 
--- Сканирование только индекса
+-- 09. Сканирование только индекса
 explain analyze select total_amount from bookings where total_amount > 200000;
 
 Index Only Scan using bookings_total_amount_idx on bookings  (cost=0.43..4120.96 rows=138773 width=6) (actual time=3.958..11.770 rows=141535 loops=1)
@@ -95,7 +95,7 @@ Index Only Scan using bookings_total_amount_idx on bookings  (cost=0.43..4120.96
 Planning Time: 0.074 ms
 Execution Time: 13.713 ms
 
--- Сканирование многоколоночного индекса
+-- 10. Сканирование многоколоночного индекса
 explain analyze select * from ticket_flights where ticket_no = '0005432000284' and flight_id = 187662;
 
 Index Scan using ticket_flights_pkey on ticket_flights  (cost=0.56..8.58 rows=1 width=32) (actual time=0.873..0.876 rows=1 loops=1)
@@ -103,7 +103,7 @@ Index Scan using ticket_flights_pkey on ticket_flights  (cost=0.56..8.58 rows=1 
 Planning Time: 0.382 ms
 Execution Time: 0.889 ms
 
--- Параллельное последовательное сканирование
+-- 11. Параллельное последовательное сканирование
 explain analyze select count(*) from bookings;
 
 Finalize Aggregate  (cost=25483.58..25483.59 rows=1 width=8) (actual time=66.416..70.560 rows=1 loops=1)
@@ -115,7 +115,7 @@ Finalize Aggregate  (cost=25483.58..25483.59 rows=1 width=8) (actual time=66.416
 Planning Time: 0.090 ms
 Execution Time: 70.595 ms
 
--- Параллельное сканирование индекса
+-- 12. Параллельное сканирование индекса
 explain analyze select sum(total_amount) from bookings where book_ref < '400000';
 
 Finalize Aggregate  (cost=16874.81..16874.82 rows=1 width=32) (actual time=62.093..67.272 rows=1 loops=1)
@@ -128,7 +128,7 @@ Finalize Aggregate  (cost=16874.81..16874.82 rows=1 width=32) (actual time=62.09
 Planning Time: 0.128 ms
 Execution Time: 67.302 ms
 
--- Параллельное сканирование только индекса
+-- 13. Параллельное сканирование только индекса
 explain analyze select count(book_ref) from bookings where book_ref <= '400000';
 
 Finalize Aggregate  (cost=13513.81..13513.82 rows=1 width=8) (actual time=131.309..134.209 rows=1 loops=1)
@@ -142,7 +142,7 @@ Finalize Aggregate  (cost=13513.81..13513.82 rows=1 width=8) (actual time=131.30
 Planning Time: 0.105 ms
 Execution Time: 134.235 ms
 
--- Параллельное сканирование по битовой карте
+-- 14. Параллельное сканирование по битовой карте
 explain analyze select count(*) from bookings where total_amount < 20000 and book_date > '2017-07-15 18:00:00+03'::timestamp;
 
 Finalize Aggregate  (cost=18106.35..18106.36 rows=1 width=8) (actual time=60.220..64.862 rows=1 loops=1)
@@ -160,7 +160,7 @@ Finalize Aggregate  (cost=18106.35..18106.36 rows=1 width=8) (actual time=60.220
 Planning Time: 0.156 ms
 Execution Time: 64.897 ms
 
--- Сортировка в оконных функциях
+-- 15. Сортировка в оконных функциях
 explain analyze select *, sum(total_amount) over (order by book_date) from bookings;
 
 WindowAgg  (cost=0.74..130869.71 rows=2111110 width=53) (actual time=0.037..1676.154 rows=2111110 loops=1)
@@ -168,7 +168,7 @@ WindowAgg  (cost=0.74..130869.71 rows=2111110 width=53) (actual time=0.037..1676
 Planning Time: 0.092 ms
 Execution Time: 1715.510 ms
 
--- Оконные функции, требующие разного порядка строк
+-- 16. Оконные функции, требующие разного порядка строк
 explain analyze select *, sum(total_amount) over (order by book_date), count(*) over (order by book_ref) from bookings;
 
 WindowAgg  (cost=422784.39..459728.73 rows=2111110 width=61) (actual time=1435.452..2277.898 rows=2111110 loops=1)
@@ -180,7 +180,7 @@ WindowAgg  (cost=422784.39..459728.73 rows=2111110 width=61) (actual time=1435.4
 Planning Time: 0.062 ms
 Execution Time: 2327.672 ms
 
--- Применение группировки
+-- 17. Применение группировки
 explain analyze select fare_conditions from seats group by fare_conditions;
 
 HashAggregate  (cost=24.74..24.77 rows=3 width=8) (actual time=0.587..0.591 rows=3 loops=1)
@@ -190,7 +190,7 @@ HashAggregate  (cost=24.74..24.77 rows=3 width=8) (actual time=0.587..0.591 rows
 Planning Time: 3.776 ms
 Execution Time: 2.365 ms
 
--- Группировка сортировкой
+-- 18. Группировка сортировкой
 explain analyze select ticket_no, count(ticket_no) from ticket_flights group by ticket_no;
 
 GroupAggregate  (cost=0.56..360328.00 rows=2602930 width=22) (actual time=0.489..1412.900 rows=2949857 loops=1)
@@ -200,7 +200,7 @@ GroupAggregate  (cost=0.56..360328.00 rows=2602930 width=22) (actual time=0.489.
 Planning Time: 0.113 ms
 Execution Time: 1460.764 ms
 
--- Комбинированная группировка
+-- 19. Комбинированная группировка
 explain analyze select fare_conditions, ticket_no, amount, count(*) from ticket_flights
 group by grouping sets (fare_conditions, ticket_no, amount);
 
@@ -217,7 +217,7 @@ MixedAggregate  (cost=1520583.60..3081161.02 rows=2603259 width=36) (actual time
 Planning Time: 0.055 ms
 Execution Time: 48889.787 ms
 
--- Группировка в параллельных планах
+-- 20. Группировка в параллельных планах
 explain analyze select flight_id, count(*) from ticket_flights group by flight_id;
 
 Finalize HashAggregate  (cost=141105.81..141910.13 rows=80432 width=12) (actual time=678.425..719.203 rows=150588 loops=1)
@@ -235,7 +235,7 @@ Finalize HashAggregate  (cost=141105.81..141910.13 rows=80432 width=12) (actual 
 Planning Time: 0.077 ms
 Execution Time: 729.120 ms
 
--- Соединение вложенным циклом
+-- 21. Соединение вложенным циклом
 explain analyze select * from tickets t join ticket_flights tf on tf.ticket_no = t.ticket_no where t.ticket_no in ('0005432312163','0005432312164');
 
 Nested Loop  (cost=0.99..46.12 rows=6 width=136) (actual time=0.389..0.451 rows=8 loops=1)
@@ -246,7 +246,7 @@ Nested Loop  (cost=0.99..46.12 rows=6 width=136) (actual time=0.389..0.451 rows=
 Planning Time: 3.902 ms
 Execution Time: 0.467 ms
 
--- Вложенный цикл для левого соединения
+-- 22. Вложенный цикл для левого соединения
 explain analyze select * from aircrafts a left join seats s on (a.aircraft_code = s.aircraft_code) where a.model like 'аэробус%';
 
 Nested Loop Left Join  (cost=5.43..57.79 rows=149 width=67) (actual time=0.883..0.884 rows=0 loops=1)
@@ -260,7 +260,7 @@ Nested Loop Left Join  (cost=5.43..57.79 rows=149 width=67) (actual time=0.883..
 Planning Time: 0.383 ms
 Execution Time: 31.894 ms
 
--- Вложенный цикл для антисоединения
+-- 23. Вложенный цикл для антисоединения
 explain analyze select * from aircrafts a where a.model like 'аэробус%' 
   and not exists (select * from seats s where s.aircraft_code = a.aircraft_code);
 
@@ -274,7 +274,7 @@ Nested Loop Anti Join  (cost=0.28..4.02 rows=1 width=52) (actual time=0.029..0.0
 Planning Time: 0.095 ms
 Execution Time: 0.043 ms
 
--- Вложенный цикл для полусоединения
+-- 24. Вложенный цикл для полусоединения
 explain analyze select * from aircrafts a where a.model like 'аэробус%'
   and exists (select * from seats s where s.aircraft_code = a.aircraft_code);
 
@@ -288,7 +288,7 @@ Nested Loop Semi Join  (cost=0.28..4.02 rows=1 width=52) (actual time=0.032..0.0
 Planning Time: 0.117 ms
 Execution Time: 0.048 ms
 
--- Мемоизация - кеширование повторяющихся данных внутреннего набора
+-- 25. Мемоизация - кеширование повторяющихся данных внутреннего набора
 explain analyze select * from flights f join aircrafts_data a on f.aircraft_code = a.aircraft_code where f.flight_no = 'PG0003';
 
 Nested Loop  (cost=10.70..821.84 rows=275 width=115) (actual time=4.178..4.295 rows=113 loops=1)
@@ -306,7 +306,7 @@ Nested Loop  (cost=10.70..821.84 rows=275 width=115) (actual time=4.178..4.295 r
 Planning Time: 0.171 ms
 Execution Time: 4.322 ms
 
--- Вложенный цикл в параллельных планах
+-- 26. Вложенный цикл в параллельных планах
 explain analyze select t.passenger_name from tickets t join ticket_flights tf on tf.ticket_no = t.ticket_no
   join flights f on f.flight_id = tf.flight_id where f.flight_id = 12345;
 
@@ -326,7 +326,7 @@ Nested Loop  (cost=1000.85..115048.09 rows=104 width=16) (actual time=97.104..15
 Planning Time: 0.195 ms
 Execution Time: 157.808 ms
 
--- Функциональные зависимости предикатов (dependencies)
+-- 27. Функциональные зависимости предикатов (dependencies)
 explain analyze select * from flights where flight_no = 'PG0007' and departure_airport = 'VKO';
 
 Bitmap Heap Scan on flights  (cost=10.49..814.25 rows=14 width=63) (actual time=4.210..4.748 rows=396 loops=1)
@@ -350,7 +350,7 @@ Bitmap Heap Scan on flights  (cost=10.55..814.31 rows=275 width=63) (actual time
 Planning Time: 1.167 ms
 Execution Time: 0.123 ms
 
--- Наиболее частые комбинации значений (mcv)
+-- 28. Наиболее частые комбинации значений (mcv)
 explain analyze select * from flights where departure_airport = 'LED' and aircraft_code = '321';
 analyze flights;
 
@@ -372,7 +372,7 @@ Seq Scan on flights  (cost=0.00..5847.00 rows=4949 width=63) (actual time=0.019.
 Planning Time: 0.101 ms
 Execution Time: 14.217 ms
 
--- Уникальные комбинации
+-- 29. Уникальные комбинации
 explain analyze select distinct departure_airport, arrival_airport from flights;
 
 HashAggregate  (cost=5847.01..5955.16 rows=10816 width=8) (actual time=26.281..26.333 rows=618 loops=1)
@@ -401,7 +401,7 @@ Unique  (cost=5554.72..5628.88 rows=618 width=8) (actual time=25.129..29.639 row
 Planning Time: 0.092 ms
 Execution Time: 29.713 ms
 
--- Статистика по выражению
+-- 30. Статистика по выражению
 explain analyze select * from flights where extract(month from scheduled_departure at time zone 'Europe/Moscow') = 1;
 
 Gather  (cost=1000.00..5943.27 rows=1074 width=63) (actual time=0.436..36.086 rows=16831 loops=1)
@@ -432,7 +432,7 @@ select * from pg_statistic_ext_data;
 
 analyze flights;
 
--- Узел Materialize
+-- 31. Узел Materialize
 
 explain analyze select a1.city, a2.city from airports a1, airports a2 where a1.timezone = 'Europe/Moscow'
   and abs(a2.coordinates[1]) > 66.652; -- за полярным кругом
@@ -448,7 +448,7 @@ Nested Loop  (cost=0.00..805.90 rows=1540 width=64) (actual time=0.303..0.618 ro
 Planning Time: 0.522 ms
 Execution Time: 1.437 ms
 
--- Материализация CTE
+-- 32. Материализация CTE
 explain analyze
   with q as materialized (select f.flight_id, a.aircraft_code from flights f join aircrafts a on a.aircraft_code = f.aircraft_code) 
   select * from q join seats s on s.aircraft_code = q.aircraft_code where s.seat_no = '1A';
@@ -471,7 +471,7 @@ Hash Join  (cost=5628.35..10503.00 rows=9669 width=35) (actual time=0.077..72.64
 Planning Time: 0.147 ms
 Execution Time: 77.298 ms
 
--- Рекурсивные запросы
+-- 33. Рекурсивные запросы
 explain analyze
 with recursive r(n, airport_code) as (
   select 1, a.airport_code
