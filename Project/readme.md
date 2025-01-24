@@ -49,6 +49,6 @@
 * [Планы запросов в Cloudberry Database](Cloudberry_queries.sql)
 * [Планы запросов в Greenplum6](Greenplum6_queries.sql)
    
-**Разбор методов оптимизации некоторых сложных и интересных запросов**
-* [В PostgreSQL 17 запросы, в планах выполнения которых есть initPlan, могут использовать параллельные процессы (workers) для выполнения initPlan](Opt_initPlan.md)
+**Разбор планов выполнения некоторых запросов**
+* [initPlan](Opt_initPlan.md)
 * [Index Scan](Opt_IndexScan.md)
