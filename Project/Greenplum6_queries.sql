@@ -1,6 +1,6 @@
 set schema 'bookings';
 
--- Последовательное сканирование
+-- 01
 explain analyze select * from flights;
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..551.27 rows=214867 width=123) (actual time=49.356..646.979 rows=214867 loops=1)
@@ -12,7 +12,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 659.481 ms
 
--- Сканирование индекса
+-- 02
 -- create unique index bookings_pkey on bookings.bookings using btree (book_ref);
 -- SQL Error [0A000]: ERROR: append-only tables do not support unique indexes
 create index bookings_pkey on bookings.bookings using btree (book_ref);
@@ -31,7 +31,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 2.413 ms
 
--- Поиск по диапазону
+-- 03
 explain analyze select * from bookings where book_ref > '000900' and book_ref < '000939';
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..526.36 rows=337778 width=36) (actual time=183.599..199.950 rows=5 loops=1)
@@ -44,7 +44,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 201.104 ms
 
--- Поиск отдельных значений
+-- 04
 explain analyze select * from bookings where book_ref in ('000906','000909','000917','000930','000938');
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..387.98 rows=6 width=36) (actual time=0.003..1.773 rows=5 loops=1)
@@ -59,7 +59,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 3.929 ms
 
--- Сканирование по битовой карте
+-- 05
 create index on bookings(book_date);
 create index on bookings(total_amount);
 
@@ -77,7 +77,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 6.514 ms
 
--- Объединение битовых карт
+-- 06
 explain analyze select * from bookings where total_amount < 5000 or total_amount > 500000;
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..461.56 rows=14277 width=36) (actual time=0.011..14.577 rows=9636 loops=1)
@@ -95,7 +95,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 22.809 ms
 
--- Объединение битовых карт по разным индексам
+-- 07
 explain analyze select * from bookings where total_amount < 5000 OR book_date::timestamp with time zone = bookings.now() - INTERVAL '1 day';
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..629.12 rows=846519 width=36) (actual time=51.697..382.719 rows=1474 loops=1)
@@ -108,7 +108,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 385.537 ms
 
--- Объединение битовых карт с перепроверкой (Recheck Cond)
+-- 08
 explain analyze select count(*) from bookings where total_amount < 5000 and book_date::timestamp with time zone > '2017-07-15 18:00:00+03'::timestamp;
 
 Aggregate  (cost=0.00..396.52 rows=1 width=8) (actual time=9.359..9.359 rows=1 loops=1)
@@ -126,7 +126,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 13.339 ms
 
--- Сканирование только индекса
+-- 09
 explain analyze select total_amount from bookings where total_amount > 200000;
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..477.18 rows=141023 width=6) (actual time=2.166..176.787 rows=141535 loops=1)
@@ -139,7 +139,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 183.675 ms
 
--- Сканирование многоколоночного индекса
+-- 10
 explain analyze select * from ticket_flights where ticket_no = '0005432000284' and flight_id = 187662;
 
 Gather Motion 1:1  (slice1; segments: 1)  (cost=0.00..685.83 rows=1 width=32) (actual time=605.883..605.884 rows=1 loops=1)
@@ -152,7 +152,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 609.358 ms
 
--- Параллельное последовательное сканирование
+-- 11
 explain analyze select count(*) from bookings;
 
 Aggregate  (cost=0.00..451.66 rows=1 width=8) (actual time=286.273..286.273 rows=1 loops=1)
@@ -166,7 +166,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 287.001 ms
 
--- Параллельное сканирование индекса
+-- 12
 explain analyze select sum(total_amount) from bookings where book_ref < '400000';
 
 Aggregate  (cost=0.00..480.50 rows=1 width=8) (actual time=197.542..197.542 rows=1 loops=1)
@@ -181,7 +181,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 198.112 ms
 
--- Параллельное сканирование только индекса
+-- 13
 explain analyze select count(book_ref) from bookings where book_ref <= '400000';
 
 Aggregate  (cost=0.00..477.39 rows=1 width=8) (actual time=205.166..205.166 rows=1 loops=1)
@@ -196,7 +196,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 206.170 ms
 
--- Параллельное сканирование по битовой карте
+-- 14
 explain analyze select count(*) from bookings where total_amount < 20000 and book_date::timestamp with time zone > '2017-07-15 18:00:00+03'::timestamp;
 
 Aggregate  (cost=0.00..499.55 rows=1 width=8) (actual time=164.806..164.806 rows=1 loops=1)
@@ -211,7 +211,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 165.509 ms
 
--- Сортировка в оконных функциях
+-- 15
 explain analyze select *, sum(total_amount) over (order by book_date) from bookings;
 
 WindowAgg  (cost=0.00..3646.85 rows=703704 width=32) (actual time=3882.547..7583.311 rows=2111110 loops=1)
@@ -230,7 +230,7 @@ Memory wanted:  161698kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 7655.914 ms
 
--- Оконные функции, требующие разного порядка строк
+-- 16
 explain analyze select *, sum(total_amount) over (order by book_date), count(*) over (order by book_ref) from bookings;
 
 WindowAgg  (cost=0.00..11761.90 rows=703704 width=40) (actual time=15552.102..16722.627 rows=2111110 loops=1)
@@ -254,7 +254,7 @@ Memory wanted:  1021828kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 16810.499 ms
 
--- Применение группировки
+-- 17
 explain analyze select fare_conditions from seats group by fare_conditions;
 
 Gather Motion 3:1  (slice2; segments: 3)  (cost=0.00..431.07 rows=3 width=8) (actual time=9.863..9.864 rows=3 loops=1)
@@ -278,7 +278,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 20.887 ms
 
--- Группировка сортировкой
+-- 18
 -- create unique index ticket_flights_pkey on bookings.ticket_flights using btree (ticket_no, flight_id);
 -- SQL Error [0A000]: ERROR: append-only tables do not support unique indexes
 create index ticket_flights_pkey on bookings.ticket_flights using btree (ticket_no, flight_id);
@@ -301,7 +301,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 5944.158 ms
 
--- Комбинированная группировка
+-- 19
 explain analyze select fare_conditions, ticket_no, amount, count(*) from ticket_flights
   group by grouping sets (fare_conditions, ticket_no, amount);
 
@@ -359,7 +359,7 @@ Memory wanted:  1206840kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 9554.464 ms
 
--- Группировка в параллельных планах
+-- 20
 explain analyze select flight_id, count(*) from ticket_flights group by flight_id;
 
 Gather Motion 3:1  (slice2; segments: 3)  (cost=0.00..879.68 rows=81603 width=12) (actual time=1117.991..1203.780 rows=150588 loops=1)
@@ -383,7 +383,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 1210.477 ms
 
--- Соединение вложенным циклом
+-- 21
 explain analyze select * from tickets t join ticket_flights tf on tf.ticket_no = t.ticket_no where t.ticket_no in ('0005432312163','0005432312164');
 
 Hash Join  (cost=0.00..956.08 rows=4 width=132) (actual time=758.375..758.956 rows=8 loops=1)
@@ -410,7 +410,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 762.758 ms
 
--- Вложенный цикл для левого соединения
+-- 22
 explain analyze select * from aircrafts a left join seats s on (a.aircraft_code = s.aircraft_code) where a.model like 'аэробус%';
 
 Hash Right Join  (cost=0.00..862.39 rows=50 width=83) (actual time=3.521..3.521 rows=0 loops=1)
@@ -431,7 +431,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 8.898 ms
 
--- Вложенный цикл для антисоединения
+-- 23
 explain analyze select * from aircrafts a where a.model like 'аэробус%' 
   and not exists (select * from seats s where s.aircraft_code = a.aircraft_code);
 
@@ -468,7 +468,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 9.043 ms
 
--- Вложенный цикл для полусоединения
+-- 24
 explain analyze select * from aircrafts a where a.model like 'аэробус%'
   and exists (select * from seats s where s.aircraft_code = a.aircraft_code);
 
@@ -497,7 +497,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 4.464 ms
 
--- Мемоизация - кеширование повторяющихся данных внутреннего набора
+-- 25
 explain analyze select * from flights f join aircrafts_data a on f.aircraft_code = a.aircraft_code where f.flight_no = 'PG0003';
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..870.07 rows=277 width=191) (actual time=7.281..10.677 rows=113 loops=1)
@@ -515,7 +515,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 17.377 ms
 
--- Вложенный цикл в параллельных планах
+-- 26
 explain analyze select t.passenger_name from tickets t join ticket_flights tf on tf.ticket_no = t.ticket_no
   join flights f on f.flight_id = tf.flight_id where f.flight_id = 12345;
 
@@ -545,7 +545,7 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution time: 1090.931 ms
 
--- Функциональные зависимости предикатов (dependencies)
+-- 27
 explain analyze select * from flights where flight_no = 'PG0007' and departure_airport = 'VKO';
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..441.12 rows=25 width=123) (actual time=4.445..14.780 rows=396 loops=1)
@@ -561,7 +561,7 @@ Execution time: 15.975 ms
 create statistics (dependencies) on flight_no, departure_airport from flights; -- не поддерживается
 analyze flights;
 
--- Наиболее частые комбинации значений (mcv)
+-- 28
 explain analyze select * from flights where departure_airport = 'LED' and aircraft_code = '321';
 
 Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..441.78 rows=1261 width=123) (actual time=4.543..34.987 rows=5148 loops=1)
@@ -579,7 +579,7 @@ analyze flights;
 
 
 
--- Уникальные комбинации
+-- 29
 explain analyze select distinct departure_airport, arrival_airport from flights;
 
 Gather Motion 3:1  (slice2; segments: 3)  (cost=0.00..455.68 rows=6084 width=8) (actual time=10.703..10.727 rows=618 loops=1)
@@ -607,7 +607,7 @@ analyze flights;
 
 
 
--- Статистика по выражению
+-- 30
 explain analyze select * from flights where extract(month from scheduled_departure at time zone 'Europe/Moscow') = 1; -- не поддерживается
 
 
@@ -624,21 +624,21 @@ select * from pg_statistic_ext_data;
 
 analyze flights;
 
--- Узел Materialize
+-- 31
 
 explain analyze select a1.city, a2.city from airports a1, airports a2 where a1.timezone = 'Europe/Moscow' -- не поддерживается
   and abs(a2.coordinates[1]) > 66.652; -- за полярным кругом
 
 
 
--- Материализация CTE - не поддерживается
+-- 32 Материализация CTE - не поддерживается
 explain analyze
   with q as materialized (select f.flight_id, a.aircraft_code from flights f join aircrafts a on a.aircraft_code = f.aircraft_code) 
   select * from q join seats s on s.aircraft_code = q.aircraft_code where s.seat_no = '1A';
 -- SQL Error [42601]: ERROR: syntax error at or near "materialized"
 
 
--- Рекурсивные запросы
+-- 33
 explain analyze
 with recursive r(n, airport_code) as (
   select 1, a.airport_code
