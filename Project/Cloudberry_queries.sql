@@ -528,8 +528,9 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution Time: 11.082 ms
 
-create statistics (dependencies) on flight_no, departure_airport from flights; -- не поддерживается
+create statistics s1 (dependencies) on flight_no, departure_airport from flights;
 analyze flights;
+-- SQL Error [XX000]: ERROR: too many sample rows received from gp_acquire_sample_rows 
 
 -- 28
 explain analyze select * from flights where departure_airport = 'LED' and aircraft_code = '321';
@@ -544,10 +545,9 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution Time: 21.580 ms
 
-create statistics (mcv) on departure_airport, aircraft_code from flights; -- не поддерживается
+create statistics s2 (mcv) on departure_airport, aircraft_code from flights;
 analyze flights;
-
-
+-- SQL Error [XX000]: ERROR: too many sample rows received from gp_acquire_sample_rows 
 
 -- 29
 explain analyze select distinct departure_airport, arrival_airport from flights;
@@ -568,27 +568,31 @@ Memory used:  128000kB
 Optimizer: Pivotal Optimizer (GPORCA)
 Execution Time: 27.345 ms
 
-create statistics on departure_airport, arrival_airport from flights; -- не поддерживается
+create statistics s3 on departure_airport, arrival_airport from flights;
 analyze flights;
-
-
+-- SQL Error [XX000]: ERROR: too many sample rows received from gp_acquire_sample_rows 
 
 -- 30
-explain analyze select * from flights where extract(month from scheduled_departure at time zone 'Europe/Moscow') = 1; -- не поддерживается
+explain analyze select * from flights where extract(month from scheduled_departure::timestamp with time zone at time zone 'Europe/Moscow') = 1;
 
+Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..485.49 rows=85947 width=123) (actual time=2.454..49.933 rows=16831 loops=1)
+  ->  Seq Scan on flights  (cost=0.00..446.10 rows=28649 width=123) (actual time=0.253..43.414 rows=5673 loops=1)
+        Filter: (EXTRACT(month FROM ((scheduled_departure)::timestamp with time zone AT TIME ZONE 'Europe/Moscow'::text)) = '1'::numeric)
+Planning Time: 6.347 ms
+  (slice0)    Executor memory: 39K bytes.
+  (slice1)    Executor memory: 1122K bytes avg x 3x(0) workers, 1122K bytes max (seg0).
+Memory used:  128000kB
+Optimizer: Pivotal Optimizer (GPORCA)
+Execution Time: 51.165 ms
 
-
-create statistics on extract(month from scheduled_departure at time zone 'europe/moscow') from flights; -- не поддерживается
+create statistics on extract(month from scheduled_departure::timestamp with time zone at time zone 'europe/moscow') from flights;
 analyze flights;
-
-
+-- SQL Error [XX000]: ERROR: too many sample rows received from gp_acquire_sample_rows 
 
 select * from pg_stats_ext;
 select * from pg_stats_ext_exprs;
 select * from pg_statistic_ext;
 select * from pg_statistic_ext_data;
-
-analyze flights;
 
 -- 31
 
