@@ -583,8 +583,19 @@ Planning Time: 3.069 ms
 Memory used:  128000kB
 Execution Time: 16.655 ms
 
-create statistics (dependencies) on flight_no, departure_airport from flights; -- не поддерживается
+create statistics s1 (dependencies) on flight_no, departure_airport from flights;
 analyze flights;
+
+Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..439.18 rows=276 width=123) (actual time=3.950..8.316 rows=396 loops=1)
+  ->  Seq Scan on flights  (cost=0.00..439.07 rows=69 width=123) (actual time=1.418..6.570 rows=102 loops=1)
+        Filter: ((flight_no = 'PG0007'::bpchar) AND (departure_airport = 'VKO'::bpchar))
+        Rows Removed by Filter: 53616
+Optimizer: GPORCA
+Planning Time: 3.067 ms
+  (slice0)    Executor memory: 38K bytes.
+  (slice1)    Executor memory: 1052K bytes avg x 4 workers, 1052K bytes max (seg0).
+Memory used:  128000kB
+Execution Time: 13.351 ms
 
 -- 28
 explain analyze select * from flights where departure_airport = 'LED' and aircraft_code = '321';
@@ -600,10 +611,19 @@ Planning Time: 3.185 ms
 Memory used:  128000kB
 Execution Time: 106.225 ms
 
-create statistics (mcv) on departure_airport, aircraft_code from flights; -- не поддерживается
+create statistics s2 (mcv) on departure_airport, aircraft_code from flights;
 analyze flights;
 
-
+Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..439.66 rows=1300 width=123) (actual time=2.621..27.736 rows=5148 loops=1)
+  ->  Seq Scan on flights  (cost=0.00..439.13 rows=325 width=123) (actual time=0.268..5.096 rows=1331 loops=1)
+        Filter: ((departure_airport = 'LED'::bpchar) AND (aircraft_code = '321'::bpchar))
+        Rows Removed by Filter: 52405
+Optimizer: GPORCA
+Planning Time: 4.379 ms
+  (slice0)    Executor memory: 38K bytes.
+  (slice1)    Executor memory: 1052K bytes avg x 4 workers, 1052K bytes max (seg0).
+Memory used:  128000kB
+Execution Time: 28.715 ms
 
 -- 29
 explain analyze select distinct departure_airport, arrival_airport from flights;
@@ -629,20 +649,47 @@ Memory used:  128000kB
 Memory wanted:  492kB
 Execution Time: 105.173 ms
 
-create statistics on departure_airport, arrival_airport from flights; -- не поддерживается
+create statistics s3 on departure_airport, arrival_airport from flights;
 analyze flights;
 
+Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..449.37 rows=618 width=8) (actual time=27.894..29.371 rows=618 loops=1)
+  ->  HashAggregate  (cost=0.00..449.35 rows=155 width=8) (actual time=26.782..26.793 rows=166 loops=1)
+        Group Key: departure_airport, arrival_airport
+        Extra Text: (seg1)   hash table(s): 1; chain length 2.4 avg, 5 max; using 166 of 256 buckets; total 0 expansions.
 
+        ->  Redistribute Motion 4:4  (slice2; segments: 4)  (cost=0.00..449.31 rows=155 width=8) (actual time=21.262..26.716 rows=664 loops=1)
+              Hash Key: departure_airport, arrival_airport
+              ->  Streaming HashAggregate  (cost=0.00..449.31 rows=155 width=8) (actual time=9.250..9.287 rows=618 loops=1)
+                    Group Key: departure_airport, arrival_airport
+                    Extra Text: (seg0)   hash table(s): 1; chain length 2.7 avg, 7 max; using 618 of 1024 buckets; total 2 expansions.
+
+                    ->  Seq Scan on flights  (cost=0.00..435.52 rows=53717 width=8) (actual time=0.306..3.067 rows=53736 loops=1)
+Optimizer: GPORCA
+Planning Time: 2.990 ms
+  (slice0)    Executor memory: 60K bytes.
+* (slice1)    Executor memory: 44K bytes avg x 4 workers, 44K bytes max (seg0).  Work_mem: 48K bytes max, 48K bytes wanted.
+* (slice2)    Executor memory: 291K bytes avg x 4 workers, 291K bytes max (seg1).  Work_mem: 89K bytes max, 89K bytes wanted.
+Memory used:  128000kB
+Memory wanted:  476kB
+Execution Time: 37.929 ms
 
 -- 30
-explain analyze select * from flights where extract(month from scheduled_departure at time zone 'Europe/Moscow') = 1; -- не поддерживается
+explain analyze select * from flights where extract(month from scheduled_departure::timestamp with time zone at time zone 'Europe/Moscow') = 1;
 
+Gather Motion 4:1  (slice1; segments: 4)  (cost=0.00..477.56 rows=85947 width=123) (actual time=2.172..189.274 rows=16831 loops=1)
+  ->  Seq Scan on flights  (cost=0.00..442.20 rows=21487 width=123) (actual time=0.506..73.367 rows=4298 loops=1)
+        Filter: (date_part('month'::text, timezone('Europe/Moscow'::text, (scheduled_departure)::timestamp with time zone)) = '1'::double precision)
+        Rows Removed by Filter: 49420
+Optimizer: GPORCA
+Planning Time: 1.817 ms
+  (slice0)    Executor memory: 38K bytes.
+  (slice1)    Executor memory: 1052K bytes avg x 4 workers, 1052K bytes max (seg0).
+Memory used:  128000kB
+Execution Time: 195.092 ms
 
-
-create statistics on extract(month from scheduled_departure at time zone 'europe/moscow') from flights; -- не поддерживается
+create statistics s4 on extract(month from scheduled_departure::timestamp with time zone at time zone 'Europe/Moscow') from flights; -- не поддерживается
+-- SQL Error [0A000]: ERROR: only simple column references are allowed in CREATE STATISTICS
 analyze flights;
-
-
 
 select * from pg_stats_ext;
 select * from pg_stats_ext_exprs;
@@ -655,8 +702,6 @@ analyze flights;
 
 explain analyze select a1.city, a2.city from airports a1, airports a2 where a1.timezone = 'Europe/Moscow' -- не поддерживается
   and abs(a2.coordinates[1]) > 66.652; -- за полярным кругом
-
-
 
 -- 32
 explain analyze
