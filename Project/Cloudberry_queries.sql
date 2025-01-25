@@ -599,8 +599,6 @@ select * from pg_statistic_ext_data;
 explain analyze select a1.city, a2.city from airports a1, airports a2 where a1.timezone = 'Europe/Moscow' -- не поддерживается
   and abs(a2.coordinates[1]) > 66.652; -- за полярным кругом
 
-
-
 -- 32
 explain analyze
   with q as materialized (select f.flight_id, a.aircraft_code from flights f join aircrafts a on a.aircraft_code = f.aircraft_code) 
