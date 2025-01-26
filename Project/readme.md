@@ -13,6 +13,8 @@
 4. Выявить преимущества и недостатки MPP-кластеров.   
 
 [Презентация PDF](Project_Optimization.pdf) [PPTX](Project_Optimization.pptx)    
+   
+[Видео 1](Optimization_Video_Part_1.avi) [Видео 2](Optimization_Video_Part_2.avi) [Видео 3](Optimization_Video_Part_3.avi)  
 
 **Создание Multi-Node кластера Arenadata DB 7.2 с помощью ADCM и бандлов**   
 * [Создание шаблона виртуальных машин в VirtualBox](VMTemplate.md)   
